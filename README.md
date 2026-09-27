@@ -1,31 +1,38 @@
 # BDM Performance · V4 / Veltrus
 
-Site estático de revisão. Código e assets deste projeto pertencem exclusivamente à BDM Performance.
+Site estático de revisão da BDM Performance. Sem dependências de runtime.
 
-## Escopo desta versão
+## Publicação
 
-- Landing page responsiva com o KV selecionado nesta conversa.
-- Rotas estáticas `brand/`, `ads/` e `review/`.
-- HTML, CSS e JavaScript sem dependências de runtime.
-- `noindex,nofollow` em todas as páginas de revisão.
-- Formulário demonstrativo, sem backend, sem envio de dados pessoais e sem conversões reais.
+GitHub Pages foi ativado usando a branch `gh-pages`, pasta raiz. O workflow nativo **pages build and deployment** publica o conteúdo dessa branch. `main` guarda o código de trabalho.
 
-As páginas de marca e anúncios são bases de revisão, não entregáveis aprovados. A imagem da hero é conceitual, gerada por IA, e não comprova instalações, resultados ou veículos de clientes reais.
+Para uma próxima publicação, validar o commit e atualizar `gh-pages` por fast-forward a partir de `main`. Não usar force push. Não presumir publicação a partir de um commit em `main`.
+
+O workflow `BDM review checks` valida a fonte e, após o deploy nativo do Pages, verifica as quatro rotas HTTPS, CSS, JavaScript e checksums das imagens. Essas verificações não substituem auditoria visual nem medição de Core Web Vitals.
+
+## Escopo
+
+- Landing page responsiva e rotas `brand/`, `ads/`, `review/`.
+- Hero selecionada na conversa, otimizada para AVIF sem corte.
+- Logo fornecido no projeto, convertido para WebP.
+- `noindex,nofollow` em todas as páginas de revisão. O site é público; noindex não é controle de acesso.
+- Formulário demonstrativo sem backend, sem envio de contatos e sem conversão real.
+- Brand e Ads são bases para revisão, não manual ou peças finais aprovados.
+
+A hero é imagem conceitual gerada por IA e contém texto incorporado. Ela não comprova instalações, veículos de clientes ou resultados reais da BDM. A revisão visual é obrigatória antes do uso comercial.
 
 ## Execução local
 
 ```sh
+python3 scripts/validate.py
+node --check app.js
 python3 -m http.server 8080
 ```
 
-Abra `http://localhost:8080/`.
-
-## Publicação
-
-O workflow `.github/workflows/pages.yml` valida os arquivos e prepara o deploy para GitHub Pages. A ativação inicial de Pages em Settings → Pages → Source: GitHub Actions exige acesso administrativo específico à configuração de Pages. Um commit enviado não comprova que o site está publicado.
+Acesse `http://localhost:8080/`.
 
 ## Gate comercial
 
-Antes de tráfego pago: aprovar peças e copy; definir contato e política de privacidade; conectar e validar endpoint de leads; disparar conversão apenas após confirmação de sucesso do backend; validar a página em dispositivos reais.
+Aprovar identidade e peças; validar claims e provas; definir política de privacidade e destino do atendimento; conectar backend; disparar conversão somente após confirmação de sucesso; verificar acessibilidade, mobile e Core Web Vitals.
 
-Nenhum segredo, token, exportação do CRM ou documento interno do Drive deve ser adicionado a este repositório público.
+Não adicionar segredos, tokens, dados pessoais, exportações do CRM ou documentos internos do Drive a este repositório público. As tasks do eKyte continuam aguardando revisão humana.

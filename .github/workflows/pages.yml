@@ -1,39 +1,33 @@
-name: Validate and deploy BDM review
+name: BDM review checks
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
 permissions:
   contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: false
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  static:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Validate static site
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Validate source
         run: |
           python3 scripts/validate.py
           node --check app.js
-      - name: Package only public site files
-        run: |
-          mkdir -p _site
-          cp index.html styles.css app.js 404.html .nojekyll _site/
-          cp -R assets brand ads review _site/
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+  smoke:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    needs: static
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
         with:
-          path: _site
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v5
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Verify published site
+        run: python3 scripts/smoke.py
