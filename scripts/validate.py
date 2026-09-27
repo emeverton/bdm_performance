@@ -10,6 +10,8 @@ REQUIRED_ASSETS = (
     "assets/campanha-representante-vertical.webp",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
+    "assets/fonts/montserrat-regular.woff",
+    "assets/fonts/montserrat-bold.woff",
 )
 ERRORS = []
 
@@ -58,6 +60,11 @@ for asset in REQUIRED_ASSETS:
 
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
+if "@layer" not in css or "prefers-reduced-motion" not in css: ERRORS.append("CSS layer structure or reduced-motion support missing")
+if css.count("{") != css.count("}"): ERRORS.append("CSS braces are unbalanced")
+if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles missing")
+for font in ("assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff"):
+    if not (ROOT / font).is_file(): ERRORS.append(f"Missing local font: {font}")
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
 if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")
 js = (ROOT / "app.js").read_text(encoding="utf-8")
@@ -65,3 +72,4 @@ if "fetch(" in js or "XMLHttpRequest" in js or "dataLayer" in js: ERRORS.append(
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
 print("PASS: 5 pages, homepage indexability, local refs, original assets, green identity and WhatsApp CTA.")
+

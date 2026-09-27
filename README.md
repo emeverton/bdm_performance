@@ -1,31 +1,40 @@
-# BDM Performance — site
+# BDM Performance
 
-Site estático, responsivo e sem dependências de runtime. A homepage foi reconstruída a partir do pacote original da BDM Performance e está publicada no GitHub Pages.
+Landing page estática, responsiva e sem dependências de runtime. O objetivo é explicar o modelo de parceria, qualificar a conversa e encaminhar o visitante para a equipe BDM.
 
-## Fontes de conteúdo e identidade
+## Conteúdo e identidade
 
-- Logo colorido original: `3. Conteúdos Cliente/logo bdm alta def.png`.
-- Arquitetura da marca: `3. Conteúdos Cliente/Arquitetura da marca-BDM-aumentada.pdf` e `.eps`.
-- Manual de copy, análise de design e anotações de reunião em `4. Conteúdos V4/Relatórios Social Media`.
-- Criativos originais do cliente, usados no acervo da página e convertidos para WebP sem redesenho.
+- Logo, cores e campanhas foram derivados do pacote original da BDM Performance.
+- O verde `#00AB58` foi amostrado do logo original. Grafite e neutros completam a paleta.
+- Montserrat foi extraída do pacote de fontes recebido e subsetada para português e latim.
+- O foco comercial é a conversa sobre parceria, retaguarda técnica e reprogramação eletrônica para a operação e a região do interessado.
+- A página contempla oficinas, representantes regionais, frotas, agronegócio e entusiastas, com CTAs contextualizados.
+- A comunicação evita números de resultado, garantias e condições comerciais que não estejam confirmados nos materiais.
 
-O verde `#00AB58` e o grafite `#2D3434` foram amostrados do logo. A direção usa os neutros recomendados nos arquivos de análise. A página foca em oficinas e parceiros e inclui entusiastas automotivos como público, conforme as notas de reunião.
+## Contato e dados
 
-## Página e contato
+- Os CTAs abrem o WhatsApp BDM `+55 44 98801-8242` com contexto pré-preenchido.
+- Não há formulário, CRM, pixel, cookies de publicidade ou armazenamento de dados neste site.
+- O número do WhatsApp é o contato informado no site da BDM.
 
-- Homepage com foco no modelo de Ponto de Apoio, retaguarda técnica e aplicações BDM.
-- CTAs abrem uma mensagem pré-preenchida no WhatsApp oficial informado no site da BDM: `+55 44 98801-8242` (`https://www.bdmperformance.com.br/`).
-- O site não recebe nem armazena dados de contato; não há formulário, CRM ou pixel de conversão.
-- Claims absolutos de potência, economia, exclusividade de software e retrabalho zero foram evitados.
-- A homepage é indexável. As rotas auxiliares `brand/`, `ads/` e `review/` permanecem com `noindex,nofollow`.
+## Estrutura
+
+- `index.html`: landing page pública.
+- `styles.css`: tokens, reset, estilos base, layout, componentes, rotas auxiliares e breakpoints.
+- `app.js`: navegação mobile acessível e ano do rodapé.
+- `assets/`: logo, campanhas convertidas em WebP e fontes locais.
+- `brand/`, `ads/` e `review/`: páginas auxiliares `noindex,nofollow`.
 
 ## Validação
 
 ```sh
 node --check app.js
 python3 scripts/validate.py
+python3 scripts/smoke.py
 ```
+
+`validate.py` verifica estrutura, indexabilidade, referências locais, ativos, tokens de marca, foco de teclado, movimento reduzido e envio de dados. `smoke.py` verifica as rotas e os ativos publicados.
 
 ## Publicação
 
-`main` é a fonte de trabalho. `gh-pages` publica o site. Promover alterações com fast-forward após validação; não usar force push.
+`main` é a fonte de trabalho e `gh-pages` publica o site. Promover alterações com fast-forward depois de validar; não usar force push.
