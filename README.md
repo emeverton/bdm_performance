@@ -1,27 +1,33 @@
-# BDM Performance · V4 / Veltrus
+# BDM Performance · site de revisão
 
-Site estático de revisão da BDM Performance. Sem dependências de runtime.
+Site estático, responsivo e sem dependências de runtime. A identidade visual foi refeita a partir do pacote original BDM Performance recebido em 27/09/2026.
 
-## Publicação
+## Fontes consultadas
 
-GitHub Pages foi ativado usando a branch `gh-pages`, pasta raiz. O workflow nativo **pages build and deployment** publica o conteúdo dessa branch. `main` guarda o código de trabalho.
+- `3. Conteúdos Cliente/logo bdm alta def.png`, logo colorido original.
+- `3. Conteúdos Cliente/Arquitetura da marca-BDM-aumentada.pdf` e `.eps`.
+- `4. Conteúdos V4/Relatórios Social Media/BDM - Análise de Design e Usabilidade.docx`.
+- `4. Conteúdos V4/Relatórios Social Media/BDM - Anotações reunião.docx`.
+- `4. Conteúdos V4/Relatórios Social Media/BDM - Manual de copy.docx`.
+- Criativos originais da pasta `3. Conteúdos Cliente`, convertidos para WebP sem criação de novas cenas.
 
-Para uma próxima publicação, validar o commit e atualizar `gh-pages` por fast-forward a partir de `main`. Não usar force push. Não presumir publicação a partir de um commit em `main`.
+## Identidade aplicada
 
-O workflow `BDM review checks` valida a fonte e, após o deploy nativo do Pages, verifica as quatro rotas HTTPS, CSS, JavaScript e checksums das imagens. Essas verificações não substituem auditoria visual nem medição de Core Web Vitals.
+O verde primário `#00AB58` foi amostrado do logo colorido original. O grafite foi amostrado do lettering. A análise de design da V4 descreve a combinação verde, preto e neutros e recomenda usar o verde com hierarquia. Tons adicionais no CSS são tratamentos de interface, não cores oficiais declaradas pelo cliente. Vermelho não é usado como cor proprietária.
 
-## Escopo
+## Escopo e limites
 
-- Landing page responsiva e rotas `brand/`, `ads/`, `review/`.
-- Hero selecionada na conversa, otimizada para AVIF sem corte.
-- Logo fornecido no projeto, convertido para WebP.
-- `noindex,nofollow` em todas as páginas de revisão. O site é público; noindex não é controle de acesso.
-- Formulário demonstrativo sem backend, sem envio de contatos e sem conversão real.
-- Brand e Ads são bases para revisão, não manual ou peças finais aprovados.
+- Landing page e rotas `brand/`, `ads/` e `review/`.
+- Público priorizado: oficinas, representantes e operações ligadas a frotas e agronegócio, conforme os materiais recebidos.
+- Cenas conceituais geradas por IA removidas e substituídas por peças originais do cliente.
+- Sem formulário, backend, transmissão de dados ou eventos de conversão.
+- `noindex,nofollow` mantido em todas as rotas, pois este é um ambiente de revisão pública.
+- Copy, oferta atual, canal de atendimento, política de privacidade, tracking e aprovação comercial ainda dependem do cliente.
+- Não foram publicados PDFs, documentos internos ou arquivos pessoais no repositório público.
 
-A hero é imagem conceitual gerada por IA e contém texto incorporado. Ela não comprova instalações, veículos de clientes ou resultados reais da BDM. A revisão visual é obrigatória antes do uso comercial.
+As anotações de reunião pedem retirar claims de exclusividade de software, e o projeto evita também garantias de potência, economia e retrabalho zero. Não transformar conteúdo conceitual em alegação de resultado.
 
-## Execução local
+## Validação local
 
 ```sh
 python3 scripts/validate.py
@@ -29,10 +35,6 @@ node --check app.js
 python3 -m http.server 8080
 ```
 
-Acesse `http://localhost:8080/`.
+## Publicação
 
-## Gate comercial
-
-Aprovar identidade e peças; validar claims e provas; definir política de privacidade e destino do atendimento; conectar backend; disparar conversão somente após confirmação de sucesso; verificar acessibilidade, mobile e Core Web Vitals.
-
-Não adicionar segredos, tokens, dados pessoais, exportações do CRM ou documentos internos do Drive a este repositório público. As tasks do eKyte continuam aguardando revisão humana.
+`main` é a fonte de trabalho. GitHub Pages publica a branch `gh-pages`. Promover alterações com fast-forward após os checks; não usar force push. A publicação continua em `noindex,nofollow` até aprovação comercial.
