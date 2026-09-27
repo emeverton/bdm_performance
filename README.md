@@ -1,40 +1,31 @@
-# BDM Performance · site de revisão
+# BDM Performance — site
 
-Site estático, responsivo e sem dependências de runtime. A identidade visual foi refeita a partir do pacote original BDM Performance recebido em 27/09/2026.
+Site estático, responsivo e sem dependências de runtime. A homepage foi reconstruída a partir do pacote original da BDM Performance e está publicada no GitHub Pages.
 
-## Fontes consultadas
+## Fontes de conteúdo e identidade
 
-- `3. Conteúdos Cliente/logo bdm alta def.png`, logo colorido original.
-- `3. Conteúdos Cliente/Arquitetura da marca-BDM-aumentada.pdf` e `.eps`.
-- `4. Conteúdos V4/Relatórios Social Media/BDM - Análise de Design e Usabilidade.docx`.
-- `4. Conteúdos V4/Relatórios Social Media/BDM - Anotações reunião.docx`.
-- `4. Conteúdos V4/Relatórios Social Media/BDM - Manual de copy.docx`.
-- Criativos originais da pasta `3. Conteúdos Cliente`, convertidos para WebP sem criação de novas cenas.
+- Logo colorido original: `3. Conteúdos Cliente/logo bdm alta def.png`.
+- Arquitetura da marca: `3. Conteúdos Cliente/Arquitetura da marca-BDM-aumentada.pdf` e `.eps`.
+- Manual de copy, análise de design e anotações de reunião em `4. Conteúdos V4/Relatórios Social Media`.
+- Criativos originais do cliente, usados no acervo da página e convertidos para WebP sem redesenho.
 
-## Identidade aplicada
+O verde `#00AB58` e o grafite `#2D3434` foram amostrados do logo. A direção usa os neutros recomendados nos arquivos de análise. A página foca em oficinas e parceiros e inclui entusiastas automotivos como público, conforme as notas de reunião.
 
-O verde primário `#00AB58` foi amostrado do logo colorido original. O grafite foi amostrado do lettering. A análise de design da V4 descreve a combinação verde, preto e neutros e recomenda usar o verde com hierarquia. Tons adicionais no CSS são tratamentos de interface, não cores oficiais declaradas pelo cliente. Vermelho não é usado como cor proprietária.
+## Página e contato
 
-## Escopo e limites
+- Homepage com foco no modelo de Ponto de Apoio, retaguarda técnica e aplicações BDM.
+- CTAs abrem uma mensagem pré-preenchida no WhatsApp oficial informado no site da BDM: `+55 44 98801-8242` (`https://www.bdmperformance.com.br/`).
+- O site não recebe nem armazena dados de contato; não há formulário, CRM ou pixel de conversão.
+- Claims absolutos de potência, economia, exclusividade de software e retrabalho zero foram evitados.
+- A homepage é indexável. As rotas auxiliares `brand/`, `ads/` e `review/` permanecem com `noindex,nofollow`.
 
-- Landing page e rotas `brand/`, `ads/` e `review/`.
-- Público priorizado: oficinas, representantes e operações ligadas a frotas e agronegócio, conforme os materiais recebidos.
-- Cenas conceituais geradas por IA removidas e substituídas por peças originais do cliente.
-- Sem formulário, backend, transmissão de dados ou eventos de conversão.
-- `noindex,nofollow` mantido em todas as rotas, pois este é um ambiente de revisão pública.
-- Copy, oferta atual, canal de atendimento, política de privacidade, tracking e aprovação comercial ainda dependem do cliente.
-- Não foram publicados PDFs, documentos internos ou arquivos pessoais no repositório público.
-
-As anotações de reunião pedem retirar claims de exclusividade de software, e o projeto evita também garantias de potência, economia e retrabalho zero. Não transformar conteúdo conceitual em alegação de resultado.
-
-## Validação local
+## Validação
 
 ```sh
-python3 scripts/validate.py
 node --check app.js
-python3 -m http.server 8080
+python3 scripts/validate.py
 ```
 
 ## Publicação
 
-`main` é a fonte de trabalho. GitHub Pages publica a branch `gh-pages`. Promover alterações com fast-forward após os checks; não usar force push. A publicação continua em `noindex,nofollow` até aprovação comercial.
+`main` é a fonte de trabalho. `gh-pages` publica o site. Promover alterações com fast-forward após validação; não usar force push.
