@@ -35,7 +35,8 @@ for name in PAGES:
     source = path.read_text(encoding="utf-8")
     doc.feed(source)
     if doc.h1 != 1: ERRORS.append(f"{name}: expected one H1")
-    expected_noindex = name != "index.html"\n    if doc.noindex != expected_noindex: ERRORS.append(f"{name}: unexpected robots indexability")
+    expected_noindex = name != "index.html"
+    if doc.noindex != expected_noindex: ERRORS.append(f"{name}: unexpected robots indexability")
     if doc.title != 1: ERRORS.append(f"{name}: title missing or repeated")
     for ref in doc.refs:
         url = urlsplit(ref)
@@ -58,7 +59,8 @@ for asset in REQUIRED_ASSETS:
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
-if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")\njs = (ROOT / "app.js").read_text(encoding="utf-8")
+if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")
+js = (ROOT / "app.js").read_text(encoding="utf-8")
 if "fetch(" in js or "XMLHttpRequest" in js or "dataLayer" in js: ERRORS.append("Unexpected data transmission/tracking code")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
