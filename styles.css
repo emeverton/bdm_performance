@@ -64,7 +64,7 @@ h1 em,h2 em { color:var(--green); font-style:normal; }
 .status { display:inline-flex; align-items:center; gap:8px; color:#d6e5db; }
 .status i { width:6px; height:6px; border-radius:50%; background:var(--green-bright); box-shadow:0 0 14px var(--green); }
 .visual-core { position:relative; z-index:2; width:min(100%,400px); align-self:center; padding:25px; border:1px solid rgba(255,255,255,.12); background:rgba(10,13,11,.72); box-shadow:0 24px 70px rgba(0,0,0,.22); }
-.visual-core img { width:min(100%,290px); padding:12px 15px; background:#fff; }
+.visual-core img { width:min(100%,290px); height:auto; padding:12px 15px; background:#fff; }
 .visual-rule { display:block; width:40px; height:2px; margin:24px 0 16px; background:var(--green); }
 .visual-core p { margin:0; color:#f4f7f5; font-size:clamp(1.25rem,2.3vw,1.9rem); font-weight:750; line-height:1.06; letter-spacing:-.04em; }
 .visual-bottom { color:#d4d9d5; }
@@ -116,7 +116,7 @@ h1 em,h2 em { color:var(--green); font-style:normal; }
 .brand-copy .text-link:hover { color:var(--green); }
 .brand-mark { position:relative; display:flex; min-height:300px; align-items:center; justify-content:center; overflow:hidden; padding:40px; border:1px solid rgba(16,19,17,.12); background:#fff; }
 .brand-mark::before { position:absolute; top:-120px; right:-85px; width:280px; height:280px; border:1px solid rgba(0,171,88,.25); border-radius:50%; box-shadow:0 0 0 30px rgba(0,171,88,.035),0 0 0 68px rgba(0,171,88,.02); content:""; }
-.brand-mark img { position:relative; z-index:1; width:min(100%,410px); }
+.brand-mark img { position:relative; z-index:1; width:min(100%,410px); height:auto; }
 .brand-mark-line { position:absolute; right:0; bottom:62px; left:0; height:1px; background:var(--line); }
 .brand-mark-caption { position:absolute; bottom:29px; left:28px; color:#737c76; font-size:.56rem; font-weight:800; letter-spacing:.15em; }
 .campaigns { background:#fff; }
