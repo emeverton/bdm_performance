@@ -6,6 +6,13 @@
   --paper: #f4f5f2;
   --white: #fff;
   --muted: #747c77;
+  --brand-green: var(--green);
+  --brand-green-bright: var(--green-bright);
+  --brand-graphite: var(--graphite);
+  --bg: var(--ink);
+  --surface: #fff;
+  --surface-raised: var(--paper);
+  --text: var(--ink);
   --line: rgba(16,19,17,.14);
   --dark-line: rgba(255,255,255,.14);
   --content: 1240px;
@@ -19,7 +26,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 body { margin: 0; color: var(--ink); background: var(--white); font-size: 16px; line-height: 1.55; }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 :focus-visible { outline: 3px solid var(--green-bright); outline-offset: 4px; }
@@ -204,3 +211,46 @@ h1 em,h2 em { color:var(--green); font-style:normal; }
   .copyright { justify-self:start; }
 }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+
+/* Compatibilidade das páginas auxiliares de marca, campanhas e revisão. */
+.review-notice { padding:8px 16px; color:#e2e8e3; background:#18211c; border-bottom:1px solid rgba(0,171,88,.35); text-align:center; font-size:.7rem; letter-spacing:.035em; }
+.logo-card { display:inline-flex; width:190px; min-width:150px; padding:8px 12px; align-items:center; background:#fff; border-radius:3px; }
+.logo-card img { width:100%; height:auto; }
+.button-secondary { color:var(--ink); border-color:rgba(16,19,17,.2); background:#fff; }
+.button-secondary:hover { color:var(--ink); border-color:var(--green); background:#f4fff8; }
+.page-hero { padding:62px 0 38px; background:linear-gradient(125deg,var(--paper),#fff 68%); }
+.page-hero h1 { max-width:17ch; margin:0 0 18px; color:var(--ink); font-size:clamp(2.75rem,5.6vw,5rem); line-height:1.02; letter-spacing:-.065em; }
+.page-hero .lead { max-width:65ch; margin:0; color:#606a63; }
+.page-section { padding:34px 0 76px; }
+.page-section h2 { margin:30px 0 18px; color:var(--ink); font-size:clamp(1.7rem,3vw,2.4rem); line-height:1.1; letter-spacing:-.045em; }
+.palette-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.swatch { overflow:hidden; border:1px solid var(--line); border-radius:3px; background:#fff; }
+.swatch-color { min-height:110px; }
+.swatch-copy { padding:13px 15px; }
+.swatch-copy b,.swatch-copy code { display:block; }
+.swatch-copy code { margin-top:5px; color:#68716b; font-size:.74rem; }
+.source-list { display:grid; gap:10px; padding:0; list-style:none; }
+.source-list li { padding:16px 18px; border:1px solid var(--line); background:#fff; color:#59625c; }
+.source-list strong,.source-list b { color:var(--ink); }
+.source-list code { overflow-wrap:anywhere; }
+.ads-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.ads-grid figure { margin:0; overflow:hidden; border:1px solid var(--line); background:var(--paper); }
+.ads-grid img { width:100%; aspect-ratio:1/1.15; padding:12px; object-fit:contain; background:#eef0ec; }
+.ads-grid figure:first-child img { aspect-ratio:9/16; }
+.ads-grid figcaption { padding:13px 15px; color:#59625c; font-size:.77rem; }
+.audit-list { display:grid; gap:11px; padding-left:1.2rem; color:#667069; }
+.audit-list strong { color:var(--ink); }
+.gallery-note { margin-top:16px; color:#69716c; font-size:.78rem; }
+.notice-box { padding:14px 17px; border-left:3px solid var(--green); background:#effaf3; color:#303a33; font-size:.83rem; }
+.footer-logo { width:132px; padding:6px 8px; border-radius:3px; background:#fff; }
+.footer-meta { color:#9ba49d; font-size:.72rem; }
+.footer-nav { display:flex; flex-wrap:wrap; gap:16px; color:#e1e7e2; font-size:.76rem; }
+@media (max-width:760px) {
+  .page-hero { padding:48px 0 27px; }
+  .page-section { padding:27px 0 58px; }
+  .palette-grid { grid-template-columns:1fr 1fr; }
+  .ads-grid { grid-template-columns:1fr 1fr; }
+  .logo-card { width:150px; min-width:130px; }
+  .footer-nav { gap:13px; }
+}
+@media (max-width:480px) { .ads-grid { grid-template-columns:1fr; } }
