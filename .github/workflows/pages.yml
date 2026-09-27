@@ -21,13 +21,15 @@ jobs:
           python3 scripts/validate.py
           node --check app.js
   smoke:
-    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    # This verifies the current published release, not unpromoted main changes.
+    # Also runs on push because native Pages may not emit workflow_run events.
     needs: static
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: gh-pages
+          persist-credentials: false
       - name: Verify published site
         run: python3 scripts/smoke.py
