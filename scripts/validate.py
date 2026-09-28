@@ -123,7 +123,9 @@ if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles miss
 for font in ("assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff"):
     if not (ROOT / font).is_file(): ERRORS.append(f"Missing local font: {font}")
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
-if home.count("wa.me/5544988018242") < 10: ERRORS.append("CRO gate: expected ten or more intent CTAs")
+if home.count('href="#qualificacao"') < 4: ERRORS.append("CRO gate: expected repeated CTAs routed to qualification form")
+for token in ('id="partner-form"', 'name="automotive_role"', 'name="capital"', 'name="lgpd"', "R$50 mil a R$150 mil"):
+    if token not in home: ERRORS.append(f"CRO gate: qualification token missing: {token}")
 if "mobile-sticky-cta" not in home or ".mobile-sticky-cta" not in css: ERRORS.append("UX gate: mobile sticky CTA missing")
 if "bdm-hero-mobile-1440.webp" not in home or ".hero-note { display: none; }" not in css: ERRORS.append("UX gate: compact mobile hero missing")
 for token in ("og:url", "og:image:width", "twitter:title", 'name="robots"'):
@@ -142,7 +144,7 @@ else:
 if "Sitemap: https://emeverton.github.io/bdm_performance/sitemap.xml" not in (ROOT / "robots.txt").read_text(encoding="utf-8"):
     ERRORS.append("SEO gate: sitemap discovery missing")
 js = (ROOT / "app.js").read_text(encoding="utf-8")
-for module in ("modules/navigation.js", "modules/testimonials.js", "modules/attribution.js", "modules/engagement.js"):
+for module in ("modules/navigation.js", "modules/testimonials.js", "modules/attribution.js", "modules/engagement.js", "modules/qualification.js"):
     source = (ROOT / module).read_text(encoding="utf-8")
     if "fetch(" in source or "XMLHttpRequest" in source or "sendBeacon(" in source:
         ERRORS.append(f"Unexpected network transmission code in {module}")
@@ -152,6 +154,9 @@ for token in ("utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid", 
 engagement = (ROOT / "modules/engagement.js").read_text(encoding="utf-8")
 for event in ("bdm_faq_open", "bdm_testimonial_play", "bdm_final_cta_view"):
     if event not in engagement: ERRORS.append(f"CRO gate: engagement event missing: {event}")
+qualification = (ROOT / "modules/qualification.js").read_text(encoding="utf-8")
+for token in ("generate_lead", "Lead", "5518997553071", "bdm_measurement_consent"):
+    if token not in qualification: ERRORS.append(f"CRO gate: form conversion token missing: {token}")
 workflow = (ROOT / ".github/workflows/verify.yml").read_text(encoding="utf-8")
 pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
 for token in ("permissions:\n  contents: read", "timeout-minutes: 5", "cancel-in-progress: true"):

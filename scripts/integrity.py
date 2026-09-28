@@ -20,6 +20,7 @@ FILES = (
     "modules/testimonials.js",
     "modules/attribution.js",
     "modules/engagement.js",
+    "modules/qualification.js",
     "robots.txt",
     "sitemap.xml",
     ".well-known/security.txt",
