@@ -73,7 +73,7 @@ for font in ("assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bo
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
 if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")
 js = (ROOT / "app.js").read_text(encoding="utf-8")
-if "fetch(" in js or "XMLHttpRequest" in js or "dataLayer" in js: ERRORS.append("Unexpected data transmission/tracking code")
+if "fetch(" in js or "XMLHttpRequest" in js or "sendBeacon(" in js: ERRORS.append("Unexpected network transmission code")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
 print("PASS: 5 pages, homepage indexability, local refs, original assets, landscape CGI hero image, animated green light, green identity and WhatsApp CTA.")

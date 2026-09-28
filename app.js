@@ -37,3 +37,49 @@ if (menuButton && navigation) {
 
 const year = document.querySelector("#year");
 if (year) year.textContent = String(new Date().getFullYear());
+
+// Carrega o player somente quando a pessoa decide assistir ao depoimento.
+document.querySelectorAll(".story-play[data-video-id]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const id = link.dataset.videoId;
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(id || "")) return;
+    event.preventDefault();
+    const frame = document.createElement("iframe");
+    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    frame.title = link.getAttribute("aria-label") || "Depoimento em vídeo";
+    frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.allowFullscreen = true;
+    link.replaceWith(frame);
+  });
+});
+
+// Evento pronto para GTM e contexto de campanha enviado na própria conversa.
+const campaign = new URLSearchParams(window.location.search);
+const fields = ["utm_source", "utm_medium", "utm_campaign"];
+const campaignValues = Object.fromEntries(fields.map((key) => [
+  key,
+  (campaign.get(key) || "").slice(0, 80).replace(/[^\p{L}\p{N} _.-]/gu, "").trim(),
+]));
+
+document.querySelectorAll('a[href^="https://wa.me/5544988018242"]').forEach((link) => {
+  const originalHref = link.href;
+  link.addEventListener("click", () => {
+    const section = link.closest("section")?.id || (link.closest("header") ? "header" : "footer");
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "bdm_partner_cta_click",
+      section,
+      label: link.textContent.trim(),
+      ...campaignValues,
+    });
+
+    if (!campaignValues.utm_source && !campaignValues.utm_medium && !campaignValues.utm_campaign) return;
+    const target = new URL(originalHref);
+    const origin = [campaignValues.utm_source, campaignValues.utm_medium, campaignValues.utm_campaign]
+      .filter(Boolean).join(" / ");
+    target.searchParams.set("text", `${target.searchParams.get("text") || ""}\nOrigem: ${origin}`);
+    link.href = target.toString();
+  });
+});

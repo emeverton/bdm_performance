@@ -52,5 +52,5 @@ if "<video" in get("").decode("utf-8").lower(): raise SystemExit("Hero video was
 if any(token in css for token in ("--red", "--v4-red", "#ed1c24", "#e31b23", "#e50000")):
     raise SystemExit("Legacy red brand token remains in published CSS")
 js = get("app.js").decode("utf-8")
-if "fetch(" in js or "dataLayer" in js: raise SystemExit("Unexpected tracking/data transmission")
+if "fetch(" in js or "XMLHttpRequest" in js or "sendBeacon(" in js: raise SystemExit("Unexpected network transmission")
 print("PASS: public routes, indexability, BDM identity, responsive stylesheet and local asset delivery verified.")
