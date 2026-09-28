@@ -1,6 +1,9 @@
 function pushEvent(payload) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
+  let measurementConsent = "denied";
+  try { measurementConsent = localStorage.getItem("bdm_measurement_consent") || "denied"; } catch { /* Optional storage. */ }
+  if (measurementConsent !== "granted") return;
   if (typeof window.gtag === "function") window.gtag("event", payload.event, payload);
   if (typeof window.fbq === "function") window.fbq("trackCustom", payload.event, payload);
 }
@@ -25,7 +28,7 @@ export function initEngagement() {
     }), { once: true });
   });
 
-  const finalSection = document.querySelector(".final-cta");
+  const finalSection = document.querySelector(".qualification-section");
   if (!finalSection || !("IntersectionObserver" in window)) return;
   const observer = new IntersectionObserver((entries) => {
     if (!entries.some((entry) => entry.isIntersecting)) return;

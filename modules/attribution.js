@@ -26,13 +26,16 @@ export function initAttribution() {
   const pushEvent = (payload) => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
+    let measurementConsent = "denied";
+    try { measurementConsent = localStorage.getItem("bdm_measurement_consent") || "denied"; } catch { /* Optional storage. */ }
+    if (measurementConsent !== "granted") return;
     if (typeof window.gtag === "function") window.gtag("event", payload.event, payload);
     if (typeof window.fbq === "function") window.fbq("trackCustom", payload.event, payload);
   };
 
   const slug = (value) => sanitize(value, 80).toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
 
-  document.querySelectorAll('a[href^="https://wa.me/5544988018242"]').forEach((link) => {
+  document.querySelectorAll('a[href="#qualificacao"]').forEach((link) => {
     const originalHref = link.href;
     link.addEventListener("click", () => {
       const section = link.closest("section")?.id || (link.closest("header") ? "header" : "footer");
@@ -47,13 +50,7 @@ export function initAttribution() {
         ...attribution,
       });
 
-      const target = new URL(originalHref);
-      const origin = [attribution.utm_source, attribution.utm_medium, attribution.utm_campaign]
-        .filter(Boolean).join(" / ");
-      const context = [`Interesse: ${ctaId}`];
-      if (origin) context.push(`Origem: ${origin}`);
-      target.searchParams.set("text", `${target.searchParams.get("text") || ""}\n${context.join("\n")}`);
-      link.href = target.toString();
+      link.href = originalHref;
     });
   });
 }
