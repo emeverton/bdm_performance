@@ -311,7 +311,12 @@
     letter-spacing: .05em;
   }
   .hero-footer i { width: 4px; aspect-ratio: 1; border-radius: 50%; background: var(--green-bright); }
-  .partnership { background: var(--white); }
+  .partnership { padding-top: clamp(3.75rem, 6vw, 5.5rem); background: var(--white); }
+  .partnership .section-heading { align-items: flex-start; gap: clamp(2rem, 5vw, 4.5rem); margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+  .partnership .section-heading > div { max-width: 51rem; }
+  .partnership .section-heading h2 { max-width: 19ch; font-size: clamp(2.25rem, 4vw, 3.7rem); line-height: 1.04; }
+  .partnership .section-intro { max-width: 34ch; padding-top: .4rem; }
+  .partnership .benefit-card { min-height: 19rem; }
   .benefit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; }
   .benefit-card {
     display: flex;
@@ -570,6 +575,9 @@
   .hero-footer { min-height: 0; flex-wrap: wrap; justify-content: flex-start; gap: .75rem 1rem; padding-block: 1rem; font-size: .65rem; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 1rem; }
   .section-heading h2, .brand-section h2 { max-width: 14ch; font-size: clamp(2.35rem, 8vw, 3.7rem); }
+  .partnership .section-heading { display: grid; gap: 1rem; }
+  .partnership .section-heading h2 { max-width: 18ch; font-size: clamp(2.15rem, 8vw, 3.25rem); }
+  .partnership .benefit-card { min-height: 17rem; }
   .benefit-grid { grid-template-columns: 1fr; }
   .benefit-card { min-height: 17rem; }
   .benefit-card + .benefit-card { border-top: 1px solid var(--line); border-left: 0; }
