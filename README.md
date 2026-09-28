@@ -22,20 +22,26 @@ Landing page estática, responsiva e sem dependências de runtime. O objetivo é
 ## Estrutura
 
 - `index.html`: landing page pública.
-- `styles.css`: tokens, reset, estilos base, layout, componentes, rotas auxiliares e breakpoints.
-- `app.js`: navegação mobile, depoimentos sob demanda, contexto de campanha nos CTAs e ano do rodapé.
-- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais, vídeo ilustrativo do hero com marca removida em WebM VP9 e MP4 H.264, e imagem estática de apoio. A cena não documenta uma instalação ou colaborador real da BDM. O vídeo foi ampliado de 1280 × 720 para 1920 × 1080 com interpolação Lanczos, sem criar detalhe real ausente no original. É mudo, reproduz uma vez no desktop e mantém o último quadro visível. Em telas menores ou com preferência por movimento reduzido, aparece a imagem estática com animação CSS somente quando o movimento é permitido.
+- `styles/`: fontes de CSS divididas por tokens/base, componentes, páginas auxiliares e responsividade. `scripts/build_css.py` gera o único `styles.css` servido ao navegador.
+- `modules/`: navegação mobile, depoimentos sob demanda e contexto de campanha nos CTAs. `app.js` é o módulo de entrada.
+- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais e a imagem ilustrativa da hero enviada para esta revisão. O master 8K mede 7680 × 4320, derivado por ampliação da imagem de 1672 × 941; não contém detalhe real equivalente a uma captura nativa 8K. O navegador escolhe entre 960, 1920, 3840 e 7680 pixels conforme tela e densidade. A cena não documenta uma instalação ou colaborador real da BDM.
 - `brand/`, `ads/` e `review/`: páginas auxiliares `noindex,nofollow`.
+- `SECURITY.md`, `integrity.sha256` e `.github/workflows/verify.yml`: política de segurança, hashes e validação automática.
 
 ## Validação
 
 ```sh
+python3 scripts/build_css.py --check
+python3 scripts/integrity.py
 node --check app.js
+node --check modules/navigation.js
+node --check modules/testimonials.js
+node --check modules/attribution.js
 python3 scripts/validate.py
-python3 scripts/smoke.py
+BDM_LOCAL_ROOT="$PWD" python3 scripts/smoke.py
 ```
 
-`validate.py` verifica estrutura, indexabilidade, referências locais, ativos, tokens de marca, foco de teclado, movimento reduzido e envio de dados. `smoke.py` verifica as rotas e os ativos publicados.
+`validate.py` verifica estrutura, indexabilidade, referências locais, hero, assinatura, CSP, SRI, marca, foco de teclado e envio de dados. `smoke.py` verifica rotas e ativos locais ou publicados. Atualize SRI e manifesto após cada mudança autorizada conforme `SECURITY.md`.
 
 ## Publicação
 

@@ -2,15 +2,18 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import re
+import base64
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "brand/index.html", "ads/index.html", "review/index.html", "404.html")
 REQUIRED_ASSETS = (
     "assets/logo-bdm-original.webp",
     "assets/campanha-representante-vertical.webp",
-    "assets/bdm-engine-hero.webp",
-    "assets/bdm-workshop-hero.mp4",
-    "assets/bdm-workshop-hero.webm",
+    "assets/bdm-hero-960.webp",
+    "assets/bdm-hero-1920.webp",
+    "assets/bdm-hero-3840.webp",
+    "assets/bdm-hero-7680.webp",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
@@ -64,11 +67,17 @@ for asset in REQUIRED_ASSETS:
 
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
-if "bdm-engine-hero.webp" not in css: ERRORS.append("Landscape workshop hero background missing")
 if "hero-light-trace" not in css or "@keyframes engine-signal" not in css: ERRORS.append("Animated green engine signal is missing")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-if '<video class="hero-video"' not in home or 'autoplay muted playsinline' not in home or ' loop ' in home.split('<video class="hero-video"', 1)[1].split('>', 1)[0] or 'data-src="./assets/bdm-workshop-hero.mp4?v=20260928n"' not in home or 'data-src-webm="./assets/bdm-workshop-hero.webm?v=20260928o"' not in home or 'poster="./assets/bdm-engine-hero.webp"' not in home:
-    ERRORS.append("Hero video or static fallback missing")
+if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home:
+    ERRORS.append("Responsive image hero missing or video remains")
+if "Criado por Veltrus" not in home: ERRORS.append("Veltrus production credit missing")
+if "default-src 'none'; script-src 'self'" not in home or "object-src 'none'" not in home:
+    ERRORS.append("Restrictive CSP missing")
+for name in ("styles.css", "app.js"):
+    digest = base64.b64encode(hashlib.sha384((ROOT / name).read_bytes()).digest()).decode("ascii")
+    if f'integrity="sha384-{digest}"' not in home:
+        ERRORS.append(f"SRI missing or mismatched for {name}")
 if "@layer" not in css or "prefers-reduced-motion" not in css: ERRORS.append("CSS layer structure or reduced-motion support missing")
 if css.count("{") != css.count("}"): ERRORS.append("CSS braces are unbalanced")
 if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles missing")
@@ -77,7 +86,11 @@ for font in ("assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bo
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
 if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")
 js = (ROOT / "app.js").read_text(encoding="utf-8")
-if "fetch(" in js or "XMLHttpRequest" in js or "sendBeacon(" in js: ERRORS.append("Unexpected network transmission code")
+for module in ("modules/navigation.js", "modules/testimonials.js", "modules/attribution.js"):
+    source = (ROOT / module).read_text(encoding="utf-8")
+    if "fetch(" in source or "XMLHttpRequest" in source or "sendBeacon(" in source:
+        ERRORS.append(f"Unexpected network transmission code in {module}")
+if 'type="module"' not in home: ERRORS.append("Module entrypoint missing")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
-print("PASS: 5 pages, homepage indexability, local refs, workshop hero video and fallback, green identity and WhatsApp CTA.")
+print("PASS: 5 pages, responsive 8K hero, credit, CSP, SRI, module entrypoint, identity and WhatsApp CTA.")
