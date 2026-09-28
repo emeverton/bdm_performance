@@ -46,7 +46,7 @@ for path in ASSETS:
 css = get("styles.css").decode("utf-8").lower()
 if "--green: #00ab58" not in css: raise SystemExit("BDM green token missing")
 if "@layer" not in css or "prefers-reduced-motion" not in css: raise SystemExit("CSS structure or reduced-motion support missing")
-if "bdm-engine-hero.webp" not in css: raise SystemExit("Landscape CGI hero background missing")
+if "bdm-engine-hero.webp" not in css: raise SystemExit("Landscape workshop hero background missing")
 if "@keyframes engine-signal" not in css: raise SystemExit("Animated green engine signal missing")
 if "<video" in get("").decode("utf-8").lower(): raise SystemExit("Hero video was not replaced by the landscape image")
 if any(token in css for token in ("--red", "--v4-red", "#ed1c24", "#e31b23", "#e50000")):

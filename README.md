@@ -24,7 +24,7 @@ Landing page estática, responsiva e sem dependências de runtime. O objetivo é
 - `index.html`: landing page pública.
 - `styles.css`: tokens, reset, estilos base, layout, componentes, rotas auxiliares e breakpoints.
 - `app.js`: navegação mobile, depoimentos sob demanda, contexto de campanha nos CTAs e ano do rodapé.
-- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais e imagem CGI horizontal do hero, sem texto ou símbolo de geração. A luz verde animada é feita em CSS e respeita preferência por movimento reduzido.
+- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais e imagem ilustrativa gerada para o hero, com picape em oficina e diagnóstico eletrônico. A cena não documenta uma instalação ou colaborador real da BDM. A luz verde animada é feita em CSS e respeita preferência por movimento reduzido.
 - `brand/`, `ads/` e `review/`: páginas auxiliares `noindex,nofollow`.
 
 ## Validação

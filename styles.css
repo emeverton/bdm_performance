@@ -206,9 +206,9 @@
     overflow: hidden;
     color: var(--white);
     background:
-      linear-gradient(90deg, rgba(7, 11, 9, .98) 0%, rgba(7, 11, 9, .88) 31%, rgba(7, 11, 9, .35) 58%, rgba(7, 11, 9, .10) 100%),
-      linear-gradient(0deg, rgba(7, 11, 9, .72) 0%, transparent 40%),
-      url("./assets/bdm-engine-hero.webp") 62% center / cover no-repeat,
+      linear-gradient(90deg, rgba(7, 11, 9, .80) 0%, rgba(7, 11, 9, .54) 31%, rgba(7, 11, 9, .08) 57%, transparent 80%),
+      linear-gradient(0deg, rgba(7, 11, 9, .64) 0%, transparent 34%),
+      url("./assets/bdm-engine-hero.webp") center / cover no-repeat,
       #0b100d;
     isolation: isolate;
   }
@@ -227,11 +227,16 @@
     position: relative;
     z-index: 1;
     display: grid;
-    min-height: min(46rem, calc(100svh - 5.2rem));
+    min-height: min(43rem, calc(100svh - 5.2rem));
     grid-template-columns: minmax(0, 1fr);
     align-items: center;
     gap: 0;
-    padding-block: clamp(4rem, 7vw, 6.8rem) 4rem;
+    padding-block: clamp(3rem, 5vw, 5.5rem) 3rem;
+  }
+  .hero-grid.container {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(1.25rem, 2vw, 2.5rem);
   }
   .hero-light-trace {
     position: absolute;
@@ -254,7 +259,7 @@
     88% { transform: translate3d(25vw, 11vh, 0) scale(.7); opacity: .22; }
   }
   .hero-footer { position: relative; z-index: 1; }
-  .hero-copy { max-width: 46rem; }
+  .hero-copy { max-width: 43rem; }
   .hero-copy .eyebrow { margin-bottom: 1.5rem; color: #6ce7a1; }
   .hero h1 {
     max-width: 13ch;
@@ -642,7 +647,7 @@
   .js-ready .main-nav[data-open="true"] { display: flex; }
   .main-nav > a:not(.nav-cta) { padding: .8rem .15rem; border-bottom: 1px solid rgba(16, 19, 17, .08); }
   .nav-cta { justify-content: space-between; margin-top: .75rem; }
-  .hero { background: linear-gradient(180deg, rgba(7, 11, 9, .96) 0%, rgba(7, 11, 9, .80) 54%, rgba(7, 11, 9, .68) 100%), url("./assets/bdm-engine-hero.webp") 78% center / auto 100% no-repeat, #0b100d; }
+  .hero { background: linear-gradient(180deg, rgba(7, 11, 9, .90) 0%, rgba(7, 11, 9, .76) 48%, rgba(7, 11, 9, .79) 100%), url("./assets/bdm-engine-hero.webp") 76% center / auto 100% no-repeat, #0b100d; }
   .hero-light-trace { top: 49%; left: 48%; width: 4rem; animation-duration: 6s; }
   @keyframes engine-signal-mobile {
     0%, 100% { transform: translate3d(0, 0, 0) scale(.5); opacity: 0; }
@@ -652,6 +657,7 @@
   }
   .hero-light-trace { animation-name: engine-signal-mobile; }
   .hero-grid { min-height: 0; grid-template-columns: 1fr; gap: 0; padding-block: 4.2rem 2.8rem; }
+  .hero-grid.container { padding-inline: var(--gutter); }
   .hero-copy { max-width: 42rem; }
   .hero h1 { max-width: 12ch; font-size: clamp(3rem, 10.5vw, 5rem); }
   .hero-footer { min-height: 0; flex-wrap: wrap; justify-content: flex-start; gap: .75rem 1rem; padding-block: 1rem; font-size: .65rem; }
