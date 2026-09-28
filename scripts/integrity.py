@@ -21,6 +21,8 @@ FILES = (
     "assets/bdm-hero-1920.webp",
     "assets/bdm-hero-3840.webp",
     "assets/bdm-hero-7680.webp",
+    "assets/bdm-hero-mobile-720.webp",
+    "assets/bdm-hero-mobile-1440.webp",
 )
 
 expected = "".join(

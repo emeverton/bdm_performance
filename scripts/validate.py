@@ -14,6 +14,8 @@ REQUIRED_ASSETS = (
     "assets/bdm-hero-1920.webp",
     "assets/bdm-hero-3840.webp",
     "assets/bdm-hero-7680.webp",
+    "assets/bdm-hero-mobile-720.webp",
+    "assets/bdm-hero-mobile-1440.webp",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
@@ -67,9 +69,10 @@ for asset in REQUIRED_ASSETS:
 
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
-if "hero-light-trace" not in css or "@keyframes engine-signal" not in css: ERRORS.append("Animated green engine signal is missing")
+if "@keyframes hero-diagnostic-glow" not in css: ERRORS.append("Subtle desktop hero glow is missing")
+if ".hero::after { display: none; }" not in css: ERRORS.append("Mobile hero glow must be disabled")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home:
+if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
     ERRORS.append("Responsive image hero missing or video remains")
 if "Criado por Veltrus" not in home: ERRORS.append("Veltrus production credit missing")
 if "default-src 'none'; script-src 'self'" not in home or "object-src 'none'" not in home:

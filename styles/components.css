@@ -29,16 +29,15 @@
     position: absolute;
     z-index: 1;
     inset: 0;
-    background: radial-gradient(ellipse 19% 27% at 86% 53%, rgba(20, 217, 120, .34), transparent 72%);
-    opacity: .38;
+    background: radial-gradient(ellipse 12% 18% at 86% 55%, rgba(38, 232, 129, .24), rgba(20, 217, 120, .07) 38%, transparent 72%);
+    opacity: .34;
     pointer-events: none;
-    animation: hero-diagnostic-glow 5.2s ease-in-out infinite;
+    animation: hero-diagnostic-glow 7.2s ease-in-out infinite;
     content: "";
   }
   @keyframes hero-diagnostic-glow {
-    0%, 100% { opacity: .36; }
-    48% { opacity: 1; }
-    65% { opacity: .52; }
+    0%, 100% { opacity: .26; }
+    50% { opacity: .58; }
   }
   .hero-orbit {
     position: absolute;
@@ -65,45 +64,6 @@
     width: 100%;
     max-width: none;
     padding-inline: clamp(1.25rem, 2vw, 2.5rem);
-  }
-  .hero-light-trace {
-    position: absolute;
-    z-index: 1;
-    top: 53%;
-    left: 86%;
-    width: 13%;
-    height: 3px;
-    transform: rotate(12deg);
-    transform-origin: left center;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #43f997, rgba(126, 255, 180, .88) 42%, rgba(20, 217, 120, .18));
-    box-shadow: 0 0 14px 2px rgba(20, 217, 120, .7), 0 0 32px rgba(20, 217, 120, .4);
-    pointer-events: none;
-    animation: engine-signal 4.8s ease-in-out infinite;
-  }
-  .hero-light-trace::before, .hero-light-trace::after {
-    position: absolute;
-    top: 50%;
-    width: .7rem;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #91ffc0;
-    box-shadow: 0 0 9px 3px rgba(20, 217, 120, .7);
-    content: "";
-  }
-  .hero-light-trace::before { left: 0; }
-  .hero-light-trace::after { left: 0; animation: hero-data-pulse 4.8s ease-in-out infinite; }
-  @keyframes hero-data-pulse {
-    0%, 12% { left: 0; opacity: 0; }
-    22% { opacity: 1; }
-    72% { opacity: 1; }
-    88%, 100% { left: 100%; opacity: 0; }
-  }
-  @keyframes engine-signal {
-    0%, 100% { opacity: .36; }
-    48% { opacity: 1; }
-    75% { opacity: .62; }
   }
   .hero-footer { position: relative; z-index: 2; }
   .hero-copy { max-width: 43rem; }

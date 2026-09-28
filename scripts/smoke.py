@@ -12,6 +12,7 @@ ASSETS = (
     "assets/campanha-representante-vertical.webp", "assets/campanha-rede-quadrada.webp",
     "assets/bdm-hero-960.webp", "assets/bdm-hero-1920.webp",
     "assets/bdm-hero-3840.webp", "assets/bdm-hero-7680.webp",
+    "assets/bdm-hero-mobile-720.webp", "assets/bdm-hero-mobile-1440.webp",
     "modules/navigation.js", "modules/testimonials.js", "modules/attribution.js",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff",
@@ -48,9 +49,10 @@ for path in ASSETS:
 css = get("styles.css").decode("utf-8").lower()
 if "--green: #00ab58" not in css: raise SystemExit("BDM green token missing")
 if "@layer" not in css or "prefers-reduced-motion" not in css: raise SystemExit("CSS structure or reduced-motion support missing")
-if "@keyframes engine-signal" not in css: raise SystemExit("Animated green engine signal missing")
+if "@keyframes hero-diagnostic-glow" not in css: raise SystemExit("Desktop hero glow missing")
+if ".hero::after { display: none; }" not in css: raise SystemExit("Mobile hero glow is not disabled")
 home = get("").decode("utf-8")
-if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home:
+if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
     raise SystemExit("Responsive image hero missing or video remains")
 if "Criado por Veltrus" not in home: raise SystemExit("Veltrus credit missing")
 if "default-src 'none'; script-src 'self'" not in home: raise SystemExit("CSP missing")

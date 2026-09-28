@@ -16,8 +16,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <title>Ponto de Apoio BDM | Parceria para oficinas e profissionais automotivos</title>
   <link rel="preload" href="./assets/fonts/montserrat-regular.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" as="image" href="./assets/bdm-hero-1920.webp" imagesrcset="./assets/bdm-hero-960.webp 960w, ./assets/bdm-hero-1920.webp 1920w, ./assets/bdm-hero-3840.webp 3840w, ./assets/bdm-hero-7680.webp 7680w" imagesizes="100vw" fetchpriority="high">
-  <link rel="stylesheet" href="./styles.css?v=20260928p" integrity="sha384-0uqIjcxSqChhSTw5zr0mjWLC52DdhciBJ5ZeNadU6Las0ua0px/zr/Msy/wtsBsk">
+  <link rel="preload" as="image" href="./assets/bdm-hero-mobile-720.webp" imagesrcset="./assets/bdm-hero-mobile-720.webp 720w, ./assets/bdm-hero-mobile-1440.webp 1440w" imagesizes="100vw" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/bdm-hero-1920.webp" imagesrcset="./assets/bdm-hero-960.webp 960w, ./assets/bdm-hero-1920.webp 1920w, ./assets/bdm-hero-3840.webp 3840w, ./assets/bdm-hero-7680.webp 7680w" imagesizes="100vw" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="stylesheet" href="./styles.css?v=20260928p" integrity="sha384-psE+4R81DG5s2zz5kj0DtyIFIk+xQNs88hucqlsP2uLzjgwYOdkp8fCVbzB5ifpc">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -43,8 +44,10 @@
 
   <main id="conteudo">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="./assets/bdm-hero-1920.webp" srcset="./assets/bdm-hero-960.webp 960w, ./assets/bdm-hero-1920.webp 1920w, ./assets/bdm-hero-3840.webp 3840w, ./assets/bdm-hero-7680.webp 7680w" sizes="100vw" width="1672" height="941" fetchpriority="high" decoding="async" alt="" aria-hidden="true">
-      <span class="hero-light-trace" aria-hidden="true"></span>
+      <picture>
+        <source media="(max-width: 760px)" srcset="./assets/bdm-hero-mobile-720.webp 720w, ./assets/bdm-hero-mobile-1440.webp 1440w" sizes="100vw">
+        <img class="hero-image" src="./assets/bdm-hero-1920.webp" srcset="./assets/bdm-hero-960.webp 960w, ./assets/bdm-hero-1920.webp 1920w, ./assets/bdm-hero-3840.webp 3840w, ./assets/bdm-hero-7680.webp 7680w" sizes="100vw" width="1672" height="941" fetchpriority="high" decoding="async" alt="" aria-hidden="true">
+      </picture>
       <div class="hero-grid container">
         <div class="hero-copy">
           <p class="eyebrow"><span aria-hidden="true"></span> Expansão BDM · Oficinas e profissionais automotivos</p>
