@@ -18,13 +18,6 @@ if (hero && heroVideo) {
     }
   };
   heroVideo.addEventListener("playing", () => hero.classList.add("is-video-ready"));
-  let retriedInterruptedPlayback = false;
-  heroVideo.addEventListener("pause", () => {
-    if (!retriedInterruptedPlayback && canPlayHero.matches && document.visibilityState === "visible" && !heroVideo.ended) {
-      retriedInterruptedPlayback = true;
-      heroVideo.play().catch(() => {});
-    }
-  });
   canPlayHero.addEventListener("change", syncHeroVideo);
   syncHeroVideo();
 }
