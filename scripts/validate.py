@@ -5,6 +5,7 @@ import re
 import base64
 import hashlib
 import json
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "brand/index.html", "ads/index.html", "review/index.html", "404.html")
@@ -21,6 +22,15 @@ REQUIRED_ASSETS = (
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
     "assets/fonts/montserrat-bold.woff",
+    "assets/ads/final/bdm-engenharia-feed.png",
+    "assets/ads/final/bdm-engenharia-story.png",
+    "assets/ads/final/bdm-engenharia-paisagem.png",
+    "assets/ads/final/bdm-oficina-feed.png",
+    "assets/ads/final/bdm-oficina-story.png",
+    "assets/ads/final/bdm-oficina-paisagem.png",
+    "assets/ads/final/bdm-rede-feed.png",
+    "assets/ads/final/bdm-rede-story.png",
+    "assets/ads/final/bdm-rede-paisagem.png",
 )
 ERRORS = []
 
@@ -66,6 +76,25 @@ for name in PAGES:
 
 for asset in REQUIRED_ASSETS:
     if not (ROOT / asset).is_file(): ERRORS.append(f"Missing required asset: {asset}")
+
+campaign_dimensions = {"feed": (1080, 1350), "story": (1080, 1920), "paisagem": (1200, 628)}
+for concept in ("engenharia", "oficina", "rede"):
+    for campaign_format, expected_dimensions in campaign_dimensions.items():
+        campaign_path = ROOT / f"assets/ads/final/bdm-{concept}-{campaign_format}.png"
+        if not campaign_path.is_file():
+            continue
+        with campaign_path.open("rb") as campaign_file:
+            if campaign_file.read(8) != b"\x89PNG\r\n\x1a\n":
+                ERRORS.append(f"Campaign asset is not PNG: {campaign_path.name}")
+                continue
+            campaign_file.read(8)
+            dimensions = struct.unpack(">II", campaign_file.read(8))
+        if dimensions != expected_dimensions:
+            ERRORS.append(f"Campaign asset has wrong dimensions: {campaign_path.name} {dimensions}")
+
+ads_page = (ROOT / "ads/index.html").read_text(encoding="utf-8")
+if ads_page.count("Baixar PNG") != 9:
+    ERRORS.append("Campaign gate: expected nine downloadable media assets")
 
 for public_file in ("robots.txt", "sitemap.xml", ".well-known/security.txt", ".nojekyll"):
     if not (ROOT / public_file).is_file(): ERRORS.append(f"Missing public control file: {public_file}")

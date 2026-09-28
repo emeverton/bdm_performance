@@ -124,6 +124,11 @@
   .page-section { padding: 1.7rem 0 3.6rem; }
   .palette-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ads-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .campaign-heading, .campaign-assets { grid-template-columns: 1fr; }
+  .brand-manual-hero-grid { grid-template-columns: 1fr; }
+  .brand-manual-cover { width: min(100%,22rem); justify-self: start; transform: none; }
+  .campaign-heading { gap: 1.25rem; }
+  .campaign-asset-story, .campaign-asset-landscape { grid-column: auto; grid-row: auto; }
   .logo-card { width: 9.4rem; min-width: 8.1rem; }
   .footer-nav { gap: .8rem; }
   .cards { grid-template-columns: 1fr; }
