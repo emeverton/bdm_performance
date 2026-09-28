@@ -216,16 +216,16 @@
     position: absolute;
     z-index: 0;
     inset: 0;
-    background: radial-gradient(ellipse 15% 22% at 82% 48%, rgba(20, 217, 120, .15), transparent 72%);
-    opacity: .28;
+    background: radial-gradient(ellipse 19% 27% at 86% 51%, rgba(20, 217, 120, .30), transparent 72%);
+    opacity: .38;
     pointer-events: none;
     animation: hero-diagnostic-glow 5.2s ease-in-out infinite;
     content: "";
   }
   @keyframes hero-diagnostic-glow {
-    0%, 100% { opacity: .2; }
-    48% { opacity: .85; }
-    65% { opacity: .42; }
+    0%, 100% { opacity: .36; }
+    48% { opacity: 1; }
+    65% { opacity: .52; }
   }
   .hero-orbit {
     position: absolute;
@@ -256,22 +256,41 @@
   .hero-light-trace {
     position: absolute;
     z-index: 0;
-    top: 47%;
-    left: 80%;
-    width: clamp(2.2rem, 3.5vw, 3.5rem);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(20, 217, 120, .8) 0%, rgba(20, 217, 120, .3) 28%, rgba(20, 217, 120, 0) 72%);
-    filter: blur(7px);
-    opacity: 0;
+    top: 50%;
+    left: 86%;
+    width: 13%;
+    height: 2px;
+    transform: rotate(12deg);
+    transform-origin: left center;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(20, 217, 120, .9), rgba(88, 255, 164, .78) 42%, rgba(20, 217, 120, .12));
+    box-shadow: 0 0 12px rgba(20, 217, 120, .75), 0 0 24px rgba(20, 217, 120, .24);
     pointer-events: none;
-    animation: engine-signal 5.2s ease-in-out infinite;
+    animation: engine-signal 4.8s ease-in-out infinite;
+  }
+  .hero-light-trace::before, .hero-light-trace::after {
+    position: absolute;
+    top: 50%;
+    width: .55rem;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #91ffc0;
+    box-shadow: 0 0 9px 3px rgba(20, 217, 120, .7);
+    content: "";
+  }
+  .hero-light-trace::before { left: 0; }
+  .hero-light-trace::after { left: 0; animation: hero-data-pulse 4.8s ease-in-out infinite; }
+  @keyframes hero-data-pulse {
+    0%, 12% { left: 0; opacity: 0; }
+    22% { opacity: 1; }
+    72% { opacity: 1; }
+    88%, 100% { left: 100%; opacity: 0; }
   }
   @keyframes engine-signal {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(.55); opacity: 0; }
-    14% { opacity: .35; }
-    58% { transform: translate3d(2.5vw, 1vh, 0) scale(1); opacity: .58; }
-    88% { transform: translate3d(4vw, 1.5vh, 0) scale(.7); opacity: .12; }
+    0%, 100% { opacity: .36; }
+    48% { opacity: 1; }
+    75% { opacity: .62; }
   }
   .hero-footer { position: relative; z-index: 1; }
   .hero-copy { max-width: 43rem; }
@@ -663,14 +682,7 @@
   .main-nav > a:not(.nav-cta) { padding: .8rem .15rem; border-bottom: 1px solid rgba(16, 19, 17, .08); }
   .nav-cta { justify-content: space-between; margin-top: .75rem; }
   .hero { background: linear-gradient(180deg, rgba(7, 11, 9, .90) 0%, rgba(7, 11, 9, .76) 48%, rgba(7, 11, 9, .79) 100%), url("./assets/bdm-engine-hero.webp?v=20260928h") 76% center / auto 100% no-repeat, #0b100d; }
-  .hero-light-trace { top: 48%; left: 78%; width: 2.75rem; animation-duration: 6s; }
-  @keyframes engine-signal-mobile {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(.5); opacity: 0; }
-    15% { opacity: .28; }
-    58% { transform: translate3d(3vw, 1vh, 0) scale(.9); opacity: .48; }
-    88% { transform: translate3d(5vw, 2vh, 0) scale(.65); opacity: .12; }
-  }
-  .hero-light-trace { animation-name: engine-signal-mobile; }
+  .hero-light-trace { top: 56%; left: 76%; width: 20%; }
   .hero-grid { min-height: 0; grid-template-columns: 1fr; gap: 0; padding-block: 4.2rem 2.8rem; }
   .hero-grid.container { padding-inline: var(--gutter); }
   .hero-copy { max-width: 42rem; }
@@ -731,6 +743,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
-  .hero-light-trace { animation: none; opacity: .28; }
-  .hero::after { animation: none; opacity: .35; }
+  .hero-light-trace, .hero-light-trace::after { animation: none; opacity: .72; }
+  .hero-light-trace::after { display: none; }
+  .hero::after { animation: none; opacity: .55; }
 }
