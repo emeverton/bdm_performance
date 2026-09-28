@@ -66,7 +66,7 @@ if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missi
 if "bdm-engine-hero.webp" not in css: ERRORS.append("Landscape workshop hero background missing")
 if "hero-light-trace" not in css or "@keyframes engine-signal" not in css: ERRORS.append("Animated green engine signal is missing")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-if '<video class="hero-video"' not in home or 'muted loop playsinline' not in home or 'data-src="./assets/bdm-workshop-hero.mp4"' not in home or 'poster="./assets/bdm-engine-hero.webp"' not in home:
+if '<video class="hero-video"' not in home or 'muted playsinline' not in home or ' loop ' in home.split('<video class="hero-video"', 1)[1].split('>', 1)[0] or 'data-src="./assets/bdm-workshop-hero.mp4?v=20260928m"' not in home or 'poster="./assets/bdm-engine-hero.webp"' not in home:
     ERRORS.append("Hero video or static fallback missing")
 if "@layer" not in css or "prefers-reduced-motion" not in css: ERRORS.append("CSS layer structure or reduced-motion support missing")
 if css.count("{") != css.count("}"): ERRORS.append("CSS braces are unbalanced")
