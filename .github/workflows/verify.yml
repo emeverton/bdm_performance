@@ -2,14 +2,18 @@ name: Verify site integrity
 on:
   push:
   pull_request:
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - run: python3 scripts/build_css.py --check
       - run: python3 scripts/integrity.py
       - run: python3 scripts/validate.py
-      - run: node --check app.js && node --check modules/navigation.js && node --check modules/testimonials.js && node --check modules/attribution.js
+      - run: node --check app.js && node --check modules/navigation.js && node --check modules/testimonials.js && node --check modules/attribution.js && node --check modules/engagement.js

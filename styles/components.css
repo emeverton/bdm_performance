@@ -350,4 +350,5 @@
   .page-section.audience p { color: #b6c0b8; }
   .page-section.audience .audience-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; }
   .page-section.audience .audience-grid img { width: 100%; padding: 1.75rem; border-radius: var(--radius-sm); background: var(--white); }
+  .mobile-sticky-cta { display: none; }
 }

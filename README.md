@@ -30,6 +30,13 @@ Landing page estática, responsiva e sem dependências de runtime. O objetivo é
 
 ## Validação
 
+Os gates de produção cobrem quatro frentes:
+
+- **SECURITY:** CSP, SRI, versionamento por conteúdo, manifesto SHA-256, permissões mínimas no CI e canal privado de disclosure.
+- **CRO:** CTAs por intenção, CTA fixo mobile, atribuição de UTMs e click IDs, contexto no WhatsApp e eventos de CTA, FAQ, depoimento e visualização final.
+- **SEO:** metadados sociais, canonical, robots, sitemap e JSON-LD de Organization, WebSite, Service e FAQPage.
+- **UX:** hero responsiva com arte dedicada ao mobile, navegação acessível, foco visível e reduced motion.
+
 ```sh
 python3 scripts/build_css.py --check
 python3 scripts/integrity.py

@@ -4,6 +4,7 @@ from urllib.parse import urlsplit, unquote
 import re
 import base64
 import hashlib
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "brand/index.html", "ads/index.html", "review/index.html", "404.html")
@@ -66,6 +67,9 @@ for name in PAGES:
 for asset in REQUIRED_ASSETS:
     if not (ROOT / asset).is_file(): ERRORS.append(f"Missing required asset: {asset}")
 
+for public_file in ("robots.txt", "sitemap.xml", ".well-known/security.txt", ".nojekyll"):
+    if not (ROOT / public_file).is_file(): ERRORS.append(f"Missing public control file: {public_file}")
+
 
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
@@ -90,13 +94,41 @@ if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles miss
 for font in ("assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff"):
     if not (ROOT / font).is_file(): ERRORS.append(f"Missing local font: {font}")
 if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.append("Legacy red brand token remains in CSS")
-if "wa.me/5544988018242" not in (ROOT / "index.html").read_text(encoding="utf-8"): ERRORS.append("Official WhatsApp CTA missing")
+if home.count("wa.me/5544988018242") < 10: ERRORS.append("CRO gate: expected ten or more intent CTAs")
+if "mobile-sticky-cta" not in home or ".mobile-sticky-cta" not in css: ERRORS.append("UX gate: mobile sticky CTA missing")
+if "bdm-hero-mobile-1440.webp" not in home or ".hero-note { display: none; }" not in css: ERRORS.append("UX gate: compact mobile hero missing")
+for token in ("og:url", "og:image:width", "twitter:title", 'name="robots"'):
+    if token not in home: ERRORS.append(f"SEO gate: missing {token}")
+schema_match = re.search(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', home, re.S)
+if not schema_match:
+    ERRORS.append("SEO gate: JSON-LD missing")
+else:
+    try:
+        schema = json.loads(schema_match.group(1))
+        schema_types = {item.get("@type") for item in schema.get("@graph", [])}
+        if not {"Organization", "WebSite", "Service", "FAQPage"}.issubset(schema_types):
+            ERRORS.append("SEO gate: required schema types missing")
+    except json.JSONDecodeError:
+        ERRORS.append("SEO gate: invalid JSON-LD")
+if "Sitemap: https://emeverton.github.io/bdm_performance/sitemap.xml" not in (ROOT / "robots.txt").read_text(encoding="utf-8"):
+    ERRORS.append("SEO gate: sitemap discovery missing")
 js = (ROOT / "app.js").read_text(encoding="utf-8")
-for module in ("modules/navigation.js", "modules/testimonials.js", "modules/attribution.js"):
+for module in ("modules/navigation.js", "modules/testimonials.js", "modules/attribution.js", "modules/engagement.js"):
     source = (ROOT / module).read_text(encoding="utf-8")
     if "fetch(" in source or "XMLHttpRequest" in source or "sendBeacon(" in source:
         ERRORS.append(f"Unexpected network transmission code in {module}")
+attribution = (ROOT / "modules/attribution.js").read_text(encoding="utf-8")
+for token in ("utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid", "sessionStorage", "cta_id"):
+    if token not in attribution: ERRORS.append(f"CRO gate: attribution token missing: {token}")
+engagement = (ROOT / "modules/engagement.js").read_text(encoding="utf-8")
+for event in ("bdm_faq_open", "bdm_testimonial_play", "bdm_final_cta_view"):
+    if event not in engagement: ERRORS.append(f"CRO gate: engagement event missing: {event}")
+workflow = (ROOT / ".github/workflows/verify.yml").read_text(encoding="utf-8")
+for token in ("permissions:\n  contents: read", "timeout-minutes: 5", "cancel-in-progress: true"):
+    if token not in workflow: ERRORS.append(f"Security gate: workflow hardening missing: {token}")
+if "security/advisories/new" not in (ROOT / ".well-known/security.txt").read_text(encoding="utf-8"):
+    ERRORS.append("Security gate: private disclosure route missing")
 if 'type="module"' not in home: ERRORS.append("Module entrypoint missing")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
-print("PASS: 5 pages, responsive 8K hero, credit, CSP, SRI, module entrypoint, identity and WhatsApp CTA.")
+print("PASS: SECURITY, CRO, SEO and UX gates; 5 pages, responsive hero, integrity, identity and conversion paths verified.")

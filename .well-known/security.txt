@@ -1,0 +1,5 @@
+Contact: https://github.com/emeverton/bdm_performance/security/advisories/new
+Expires: 2027-09-28T23:59:59Z
+Canonical: https://emeverton.github.io/bdm_performance/.well-known/security.txt
+Policy: https://github.com/emeverton/bdm_performance/security/policy
+Preferred-Languages: pt-BR, en

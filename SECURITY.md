@@ -1,5 +1,13 @@
 # Integridade e publicação
 
+## Versões suportadas
+
+Apenas o conteúdo publicado na branch `gh-pages` recebe correções de segurança. Achados devem ser enviados de forma privada pelo recurso Security Advisory do GitHub.
+
+## Reportar uma vulnerabilidade
+
+Use `https://github.com/emeverton/bdm_performance/security/advisories/new`. Não publique credenciais, dados pessoais ou detalhes exploráveis em uma issue pública.
+
 O site é estático. Seu HTML, CSS, JavaScript e imagens são enviados ao navegador e, portanto, não podem ser criptografados de forma que o visitante execute o código sem poder inspecioná-lo. Ofuscação e lógica que quebra a página quando alguém remove a assinatura não protegem a autoria e podem causar indisponibilidade.
 
 ## Controles implementados
