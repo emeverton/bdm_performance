@@ -583,8 +583,11 @@
 
 @media (max-width: 1040px) {
   .hero-grid { grid-template-columns: 1fr; gap: 0; }
-  .main-nav { gap: .95rem; }
-  .main-nav > a:not(.nav-cta) { font-size: .73rem; }
+  .header-inner { gap: 1rem; }
+  .brand { width: 9rem; }
+  .main-nav { gap: .75rem; }
+  .main-nav > a:not(.nav-cta) { font-size: .71rem; }
+  .nav-cta { padding-inline: .75rem; font-size: .71rem; }
   .benefit-card { min-height: 21rem; }
   .audiences .segment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-inner { grid-template-columns: 8rem 1fr auto; }
