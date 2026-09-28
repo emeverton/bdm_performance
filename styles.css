@@ -314,7 +314,7 @@
   .partnership { padding-top: clamp(3.75rem, 6vw, 5.5rem); background: var(--white); }
   .partnership .section-heading { align-items: flex-start; gap: clamp(2rem, 5vw, 4.5rem); margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
   .partnership .section-heading > div { max-width: 51rem; }
-  .partnership .section-heading h2 { max-width: 19ch; font-size: clamp(2.25rem, 4vw, 3.7rem); line-height: 1.04; }
+  .partnership .section-heading h2 { max-width: 22ch; font-size: clamp(2.25rem, 4vw, 3.7rem); line-height: 1.04; }
   .partnership .section-intro { max-width: 34ch; padding-top: .4rem; }
   .partnership .benefit-card { min-height: 19rem; }
   .benefit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; }
