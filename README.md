@@ -24,7 +24,7 @@ Landing page estática, responsiva e sem dependências de runtime. O objetivo é
 - `index.html`: landing page pública.
 - `styles.css`: tokens, reset, estilos base, layout, componentes, rotas auxiliares e breakpoints.
 - `app.js`: navegação mobile, depoimentos sob demanda, contexto de campanha nos CTAs e ano do rodapé.
-- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais, vídeo ilustrativo do hero com marca removida e imagem estática de apoio. A cena não documenta uma instalação ou colaborador real da BDM. O vídeo foi ampliado de 1280 × 720 para 1920 × 1080 com interpolação Lanczos e leve nitidez, sem criar detalhe real ausente no original. É mudo, reproduz uma vez no desktop e mantém o último quadro visível. Em telas menores ou com preferência por movimento reduzido, aparece a imagem estática com animação CSS somente quando o movimento é permitido.
+- `assets/`: logo, campanhas originais convertidas em WebP, fontes locais, vídeo ilustrativo do hero com marca removida em WebM VP9 e MP4 H.264, e imagem estática de apoio. A cena não documenta uma instalação ou colaborador real da BDM. O vídeo foi ampliado de 1280 × 720 para 1920 × 1080 com interpolação Lanczos, sem criar detalhe real ausente no original. É mudo, reproduz uma vez no desktop e mantém o último quadro visível. Em telas menores ou com preferência por movimento reduzido, aparece a imagem estática com animação CSS somente quando o movimento é permitido.
 - `brand/`, `ads/` e `review/`: páginas auxiliares `noindex,nofollow`.
 
 ## Validação

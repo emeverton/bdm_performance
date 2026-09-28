@@ -8,7 +8,9 @@ if (hero && heroVideo) {
   const canPlayHero = window.matchMedia("(min-width: 761px) and (prefers-reduced-motion: no-preference)");
   const syncHeroVideo = () => {
     if (canPlayHero.matches) {
-      if (!heroVideo.getAttribute("src")) heroVideo.src = heroVideo.dataset.src;
+      if (!heroVideo.getAttribute("src")) {
+        heroVideo.src = heroVideo.canPlayType('video/webm; codecs="vp9"') ? heroVideo.dataset.srcWebm : heroVideo.dataset.src;
+      }
       heroVideo.play().catch(() => {});
     } else {
       heroVideo.pause();
