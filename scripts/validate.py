@@ -8,6 +8,7 @@ PAGES = ("index.html", "brand/index.html", "ads/index.html", "review/index.html"
 REQUIRED_ASSETS = (
     "assets/logo-bdm-original.webp",
     "assets/campanha-representante-vertical.webp",
+    "assets/bdm-engine-hero.webp",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
@@ -56,10 +57,14 @@ for name in PAGES:
         if not target.is_file(): ERRORS.append(f"{name}: missing local reference {ref}")
 
 for asset in REQUIRED_ASSETS:
-    if not (ROOT / asset).is_file(): ERRORS.append(f"Missing original-derived asset: {asset}")
+    if not (ROOT / asset).is_file(): ERRORS.append(f"Missing required asset: {asset}")
+
 
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
+if "bdm-engine-hero.webp" not in css: ERRORS.append("Landscape CGI hero background missing")
+if "hero-light-trace" not in css or "@keyframes engine-signal" not in css: ERRORS.append("Animated green engine signal is missing")
+if "<video" in (ROOT / "index.html").read_text(encoding="utf-8").lower(): ERRORS.append("Hero video should be replaced by the landscape image")
 if "@layer" not in css or "prefers-reduced-motion" not in css: ERRORS.append("CSS layer structure or reduced-motion support missing")
 if css.count("{") != css.count("}"): ERRORS.append("CSS braces are unbalanced")
 if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles missing")
@@ -71,5 +76,4 @@ js = (ROOT / "app.js").read_text(encoding="utf-8")
 if "fetch(" in js or "XMLHttpRequest" in js or "dataLayer" in js: ERRORS.append("Unexpected data transmission/tracking code")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
-print("PASS: 5 pages, homepage indexability, local refs, original assets, green identity and WhatsApp CTA.")
-
+print("PASS: 5 pages, homepage indexability, local refs, original assets, landscape CGI hero image, animated green light, green identity and WhatsApp CTA.")
