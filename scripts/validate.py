@@ -9,6 +9,7 @@ REQUIRED_ASSETS = (
     "assets/logo-bdm-original.webp",
     "assets/campanha-representante-vertical.webp",
     "assets/bdm-engine-hero.webp",
+    "assets/bdm-workshop-hero.mp4",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
@@ -64,7 +65,9 @@ css = (ROOT / "styles.css").read_text(encoding="utf-8")
 if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missing")
 if "bdm-engine-hero.webp" not in css: ERRORS.append("Landscape workshop hero background missing")
 if "hero-light-trace" not in css or "@keyframes engine-signal" not in css: ERRORS.append("Animated green engine signal is missing")
-if "<video" in (ROOT / "index.html").read_text(encoding="utf-8").lower(): ERRORS.append("Hero video should be replaced by the landscape image")
+home = (ROOT / "index.html").read_text(encoding="utf-8")
+if '<video class="hero-video"' not in home or 'muted loop playsinline' not in home or 'data-src="./assets/bdm-workshop-hero.mp4"' not in home or 'poster="./assets/bdm-engine-hero.webp"' not in home:
+    ERRORS.append("Hero video or static fallback missing")
 if "@layer" not in css or "prefers-reduced-motion" not in css: ERRORS.append("CSS layer structure or reduced-motion support missing")
 if css.count("{") != css.count("}"): ERRORS.append("CSS braces are unbalanced")
 if "focus-visible" not in css: ERRORS.append("Visible keyboard focus styles missing")
@@ -76,4 +79,4 @@ js = (ROOT / "app.js").read_text(encoding="utf-8")
 if "fetch(" in js or "XMLHttpRequest" in js or "sendBeacon(" in js: ERRORS.append("Unexpected network transmission code")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))
-print("PASS: 5 pages, homepage indexability, local refs, original assets, landscape workshop hero image, animated green light, green identity and WhatsApp CTA.")
+print("PASS: 5 pages, homepage indexability, local refs, workshop hero video and fallback, green identity and WhatsApp CTA.")

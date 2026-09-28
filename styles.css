@@ -212,6 +212,28 @@
       #0b100d;
     isolation: isolate;
   }
+  .hero-video {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s ease;
+  }
+  .hero.is-video-ready .hero-video { opacity: 1; }
+  .hero.is-video-ready::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(7,11,9,.88), rgba(7,11,9,.61) 32%, rgba(7,11,9,.05) 65%), linear-gradient(0deg, rgba(7,11,9,.64), transparent 35%);
+    pointer-events: none;
+    content: "";
+  }
+  .hero.is-video-ready .hero-light-trace, .hero.is-video-ready::after { display: none; }
   .hero::after {
     position: absolute;
     z-index: 0;
@@ -240,7 +262,7 @@
   .hero-orbit-two { right: 29%; bottom: -28rem; width: 38rem; opacity: .55; }
   .hero-grid {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: grid;
     min-height: min(43rem, calc(100svh - 5.2rem));
     grid-template-columns: minmax(0, 1fr);
@@ -292,7 +314,7 @@
     48% { opacity: 1; }
     75% { opacity: .62; }
   }
-  .hero-footer { position: relative; z-index: 1; }
+  .hero-footer { position: relative; z-index: 2; }
   .hero-copy { max-width: 43rem; }
   .hero-copy .eyebrow { margin-bottom: 1.5rem; color: #6ce7a1; }
   .hero h1 {
@@ -684,6 +706,7 @@
   .main-nav > a:not(.nav-cta) { padding: .8rem .15rem; border-bottom: 1px solid rgba(16, 19, 17, .08); }
   .nav-cta { justify-content: space-between; margin-top: .75rem; }
   .hero { background: linear-gradient(180deg, rgba(7, 11, 9, .90) 0%, rgba(7, 11, 9, .76) 48%, rgba(7, 11, 9, .79) 100%), url("./assets/bdm-engine-hero.webp?v=20260928h") 76% center / auto 100% no-repeat, #0b100d; }
+  .hero-video { display: none; }
   .hero-light-trace { top: 56%; left: 76%; width: 20%; }
   .hero-grid { min-height: 0; grid-template-columns: 1fr; gap: 0; padding-block: 4.2rem 2.8rem; }
   .hero-grid.container { padding-inline: var(--gutter); }
@@ -751,4 +774,5 @@
   .hero-light-trace, .hero-light-trace::after { animation: none; opacity: .72; }
   .hero-light-trace::after { display: none; }
   .hero::after { animation: none; opacity: .55; }
+  .hero-video { display: none; }
 }

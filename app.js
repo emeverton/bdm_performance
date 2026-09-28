@@ -2,6 +2,26 @@
 
 document.documentElement.classList.add("js-ready");
 
+const hero = document.querySelector(".hero");
+const heroVideo = document.querySelector(".hero-video");
+if (hero && heroVideo) {
+  const canPlayHero = window.matchMedia("(min-width: 761px) and (prefers-reduced-motion: no-preference)");
+  const syncHeroVideo = () => {
+    if (canPlayHero.matches) {
+      if (!heroVideo.getAttribute("src")) heroVideo.src = heroVideo.dataset.src;
+      heroVideo.play().catch(() => {});
+    } else {
+      heroVideo.pause();
+      heroVideo.removeAttribute("src");
+      heroVideo.load();
+      hero.classList.remove("is-video-ready");
+    }
+  };
+  heroVideo.addEventListener("playing", () => hero.classList.add("is-video-ready"));
+  canPlayHero.addEventListener("change", syncHeroVideo);
+  syncHeroVideo();
+}
+
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".main-nav");
 
