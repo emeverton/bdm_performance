@@ -50,6 +50,9 @@ FILES = (
     "assets/bdm-hero-7680.webp",
     "assets/bdm-hero-mobile-720.webp",
     "assets/bdm-hero-mobile-1440.webp",
+    "assets/folds/engenharia-bdm.webp",
+    "assets/folds/oficina-bdm.webp",
+    "assets/folds/rede-bdm.webp",
 )
 
 expected = "".join(

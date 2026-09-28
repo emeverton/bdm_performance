@@ -166,6 +166,11 @@
   .aggressive-heading { grid-template-columns: 1fr; }
   .proof-grid { grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(255,255,255,.12); }
   .proof-grid article { border: 0; background: #111512; }
+  .cinematic-fold { min-height: 58rem; }
+  .opportunity-fold { min-height: 70rem; }
+  .fold-stats { grid-template-columns: 1fr; }
+  .fold-stats article { min-height: 6.5rem; }
+  .opportunity-grid, .business-topics { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .pain-grid { grid-template-columns: 1fr; }
   .pain-card { min-height: 15rem; }
   .pain-card h3 { margin-top: 2.5rem; }
@@ -187,6 +192,8 @@
   .hero-recruitment .hero-grid { min-height: 42rem; align-items: end; padding-block: 12rem 2rem; }
   .hero-recruitment .hero-grid.container { width: min(calc(100% - 2 * var(--gutter)),1280px); padding-inline: 0; }
   .hero-recruitment h1 { max-width: 10ch; font-size: clamp(3.25rem,14vw,5rem); line-height: .85; }
+  .hero-recruitment h1 span { font-size: .5em; }
+  .hero-rally { max-width: 28ch; margin-top: 1rem; font-size: .62rem; letter-spacing: .2em; }
   .hero-recruitment .hero-lead { max-width: 35rem; font-size: .9rem; line-height: 1.6; }
   .hero-recruitment .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-recruitment .button { width: 100%; }
@@ -198,6 +205,31 @@
   .proof-grid strong { font-size: 3rem; }
   .proof-grid span { font-size: .6rem; }
   .proof-note { text-align: left; }
+  .cinematic-fold { min-height: 0; }
+  .cinematic-fold::after { background: linear-gradient(112deg,transparent 0 78%,rgba(0,213,99,.22) 78.2%,transparent 79%); }
+  .fold-content { min-height: 57rem; padding-block: 1.4rem 1.5rem; }
+  .fold-counter { gap: .7rem; font-size: .53rem; letter-spacing: .16em; }
+  .fold-copy, .opportunity-heading, .business-heading { margin-top: 13rem; }
+  .fold-copy h2, .opportunity-heading h2, .business-heading h2 { font-size: clamp(3.4rem,14.5vw,5.2rem); }
+  .fold-copy > p:last-child, .opportunity-heading > p:last-child, .business-heading > p:last-child { font-size: .78rem; line-height: 1.65; }
+  .authority-fold .fold-media { object-position: 69% center; }
+  .authority-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.14) 0%,rgba(4,6,5,.4) 30%,rgba(4,6,5,.99) 68%), linear-gradient(90deg,rgba(4,6,5,.86),rgba(4,6,5,.1)); }
+  .fold-stats { margin-top: 2rem; }
+  .fold-stats article { min-height: 5.5rem; }
+  .fold-stats strong { font-size: 3.5rem; }
+  .fold-signature { font-size: .64rem; letter-spacing: .15em; }
+  .opportunity-fold .fold-content { min-height: 74rem; }
+  .opportunity-fold .fold-media { object-position: 68% top; }
+  .opportunity-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.18) 0%,rgba(4,6,5,.5) 28%,rgba(4,6,5,.99) 56%), linear-gradient(90deg,rgba(4,6,5,.84),rgba(4,6,5,.05)); }
+  .opportunity-grid { margin-top: 2rem; }
+  .opportunity-grid article { min-height: 9.5rem; padding: 1rem; }
+  .opportunity-grid h3 { margin-top: 1.2rem; }
+  .business-fold .fold-content { min-height: 64rem; }
+  .business-fold .fold-media { object-position: 68% top; }
+  .business-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.15) 0%,rgba(4,6,5,.5) 30%,rgba(4,6,5,.99) 58%), linear-gradient(90deg,rgba(4,6,5,.82),rgba(4,6,5,.06)); }
+  .business-topics { margin-top: 2rem; }
+  .business-topics article { min-height: 8.5rem; padding: 1rem; }
+  .business-topics h3 { margin-top: 1rem; }
   .aggressive-heading h2, .advantage-copy h2, .operator-copy h2, .qualification-copy h2 { font-size: clamp(3rem,13vw,4.8rem); }
   .aggressive-heading > p:last-child { font-size: .82rem; }
   .race-steps { grid-template-columns: 1fr; }
@@ -218,6 +250,14 @@
   .hero-recruitment .hero-grid { min-height: 39rem; padding-top: 10rem; }
   .proof-grid article { padding: .9rem; }
   .proof-grid strong { font-size: 2.6rem; }
+  .fold-content { min-height: 60rem; }
+  .opportunity-fold .fold-content { min-height: 95rem; }
+  .business-fold .fold-content { min-height: 79rem; }
+  .fold-copy, .opportunity-heading, .business-heading { margin-top: 12.5rem; }
+  .fold-copy h2, .opportunity-heading h2, .business-heading h2 { font-size: clamp(3rem,15vw,4.3rem); }
+  .opportunity-grid, .business-topics { grid-template-columns: 1fr; }
+  .opportunity-grid article { min-height: 8.5rem; }
+  .business-topics article { min-height: 7.5rem; }
   .form-heading { align-items: flex-start; flex-direction: column; gap: .3rem; }
   .closing-statement { padding-block: 4.5rem; }
 }

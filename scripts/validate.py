@@ -18,6 +18,9 @@ REQUIRED_ASSETS = (
     "assets/bdm-hero-7680.webp",
     "assets/bdm-hero-mobile-720.webp",
     "assets/bdm-hero-mobile-1440.webp",
+    "assets/folds/engenharia-bdm.webp",
+    "assets/folds/oficina-bdm.webp",
+    "assets/folds/rede-bdm.webp",
     "assets/campanha-rede-quadrada.webp",
     "assets/campanha-ponto-de-apoio.webp",
     "assets/fonts/montserrat-regular.woff",
@@ -126,6 +129,8 @@ if re.search(r"#(?:e50000|ed1c24|e31b23)|--red|--v4-red", css, re.I): ERRORS.app
 if home.count('href="#qualificacao"') < 4: ERRORS.append("CRO gate: expected repeated CTAs routed to qualification form")
 for token in ('id="partner-form"', 'name="automotive_role"', 'name="capital"', 'name="lgpd"', "R$50 mil a R$150 mil"):
     if token not in home: ERRORS.append(f"CRO gate: qualification token missing: {token}")
+for token in ("authority-fold", "opportunity-fold", "business-fold", "73", "19 anos", "países conectados"):
+    if token not in home: ERRORS.append(f"Reference fold gate missing: {token}")
 if "mobile-sticky-cta" not in home or ".mobile-sticky-cta" not in css: ERRORS.append("UX gate: mobile sticky CTA missing")
 if "bdm-hero-mobile-1440.webp" not in home or ".hero-note { display: none; }" not in css: ERRORS.append("UX gate: compact mobile hero missing")
 for token in ("og:url", "og:image:width", "twitter:title", 'name="robots"'):

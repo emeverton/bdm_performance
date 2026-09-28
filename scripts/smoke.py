@@ -13,6 +13,7 @@ ASSETS = (
     "assets/bdm-hero-960.webp", "assets/bdm-hero-1920.webp",
     "assets/bdm-hero-3840.webp", "assets/bdm-hero-7680.webp",
     "assets/bdm-hero-mobile-720.webp", "assets/bdm-hero-mobile-1440.webp",
+    "assets/folds/engenharia-bdm.webp", "assets/folds/oficina-bdm.webp", "assets/folds/rede-bdm.webp",
     "modules/navigation.js", "modules/testimonials.js", "modules/attribution.js",
     "modules/engagement.js", "modules/qualification.js", "robots.txt", "sitemap.xml", ".well-known/security.txt",
     "assets/campanha-ponto-de-apoio.webp",
