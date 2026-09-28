@@ -312,11 +312,12 @@
     font-weight: 700;
     letter-spacing: .13em;
   }
-  .hero-art img {
+  .hero-art video {
     width: auto;
     height: min(30rem, 75vw);
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    aspect-ratio: 9 / 16;
     border-radius: 2px;
   }
   .hero-art figcaption { justify-content: center; color: #aeb9b2; letter-spacing: .07em; }
@@ -584,7 +585,7 @@
   .hero-copy { max-width: 42rem; }
   .hero h1 { max-width: 12ch; font-size: clamp(3rem, 10.5vw, 5rem); }
   .hero-art { width: min(100%, 27rem); min-height: 0; justify-self: center; }
-  .hero-art img { height: min(125vw, 36rem); }
+  .hero-art video { height: min(125vw, 36rem); }
   .hero-footer { min-height: 0; flex-wrap: wrap; justify-content: flex-start; gap: .75rem 1rem; padding-block: 1rem; font-size: .65rem; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 1rem; }
   .section-heading h2, .brand-section h2 { max-width: 14ch; font-size: clamp(2.35rem, 8vw, 3.7rem); }
@@ -622,7 +623,7 @@
   .hero-note { align-items: flex-start; }
   .hero-art { padding: .65rem; }
   .hero-art-top { font-size: .47rem; }
-  .hero-art img { height: 116vw; }
+  .hero-art video { height: 116vw; }
   .hero-art figcaption { font-size: .45rem; }
   .hero-footer { font-size: .58rem; }
   .audiences .segment-grid { grid-template-columns: 1fr; }
