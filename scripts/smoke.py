@@ -56,6 +56,7 @@ if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-768
     raise SystemExit("Responsive image hero missing or video remains")
 if "Criado por Veltrus" not in home: raise SystemExit("Veltrus credit missing")
 if "default-src 'none'; script-src 'self'" not in home: raise SystemExit("CSP missing")
+if "styles.css?v=" not in home or "app.js?v=" not in home: raise SystemExit("Versioned entrypoint URLs missing")
 if any(token in css for token in ("--red", "--v4-red", "#ed1c24", "#e31b23", "#e50000")):
     raise SystemExit("Legacy red brand token remains in published CSS")
 js = get("app.js").decode("utf-8")

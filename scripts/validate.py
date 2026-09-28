@@ -78,6 +78,9 @@ if "Criado por Veltrus" not in home: ERRORS.append("Veltrus production credit mi
 if "default-src 'none'; script-src 'self'" not in home or "object-src 'none'" not in home:
     ERRORS.append("Restrictive CSP missing")
 for name in ("styles.css", "app.js"):
+    version = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:12]
+    if f'./{name}?v={version}' not in home:
+        ERRORS.append(f"Content version missing or stale for {name}")
     digest = base64.b64encode(hashlib.sha384((ROOT / name).read_bytes()).digest()).decode("ascii")
     if f'integrity="sha384-{digest}"' not in home:
         ERRORS.append(f"SRI missing or mismatched for {name}")
