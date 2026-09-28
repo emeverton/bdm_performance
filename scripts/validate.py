@@ -124,10 +124,13 @@ engagement = (ROOT / "modules/engagement.js").read_text(encoding="utf-8")
 for event in ("bdm_faq_open", "bdm_testimonial_play", "bdm_final_cta_view"):
     if event not in engagement: ERRORS.append(f"CRO gate: engagement event missing: {event}")
 workflow = (ROOT / ".github/workflows/verify.yml").read_text(encoding="utf-8")
+pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
 for token in ("permissions:\n  contents: read", "timeout-minutes: 5", "cancel-in-progress: true"):
     if token not in workflow: ERRORS.append(f"Security gate: workflow hardening missing: {token}")
 if "security/advisories/new" not in (ROOT / ".well-known/security.txt").read_text(encoding="utf-8"):
     ERRORS.append("Security gate: private disclosure route missing")
+if workflow.count("actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1") != 1 or pages_workflow.count("actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1") != 2:
+    ERRORS.append("Security gate: actions/checkout v7.0.1 must be SHA-pinned in all workflows")
 if 'type="module"' not in home: ERRORS.append("Module entrypoint missing")
 if (ROOT / "assets/hero-bdm-performance.avif").exists(): ERRORS.append("Conceptual AI hero asset remains in project")
 if ERRORS: raise SystemExit("\n".join(ERRORS))

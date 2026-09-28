@@ -13,21 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
       - name: Validate source
         run: |
+          python3 scripts/build_css.py --check
+          python3 scripts/integrity.py
           python3 scripts/validate.py
           node --check app.js
+          node --check modules/navigation.js
+          node --check modules/testimonials.js
+          node --check modules/attribution.js
+          node --check modules/engagement.js
   smoke:
-    # This verifies the current published release, not unpromoted main changes.
-    # Also runs on push because native Pages may not emit workflow_run events.
     needs: static
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: gh-pages
           persist-credentials: false

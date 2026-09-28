@@ -23,6 +23,7 @@ FILES = (
     ".well-known/security.txt",
     ".nojekyll",
     ".github/workflows/verify.yml",
+    ".github/workflows/pages.yml",
     ".github/dependabot.yml",
     "SECURITY.md",
     "assets/bdm-hero-960.webp",
