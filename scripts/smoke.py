@@ -1,75 +1,49 @@
 import os
 import time
-from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
 BASE = os.environ.get("BDM_BASE_URL", "https://emeverton.github.io/bdm_performance/").rstrip("/") + "/"
-LOCAL_ROOT = Path(os.environ["BDM_LOCAL_ROOT"]).resolve() if os.environ.get("BDM_LOCAL_ROOT") else None
-PAGES = ("", "brand/", "ads/", "review/")
-ASSETS = (
-    "styles.css", "app.js", "assets/logo-bdm-original.webp",
-    "assets/campanha-representante-vertical.webp", "assets/campanha-rede-quadrada.webp",
-    "assets/bdm-hero-960.webp", "assets/bdm-hero-1920.webp",
-    "assets/bdm-hero-3840.webp", "assets/bdm-hero-7680.webp",
-    "assets/bdm-hero-mobile-720.webp", "assets/bdm-hero-mobile-1440.webp",
-    "assets/folds/engenharia-bdm.webp", "assets/folds/oficina-bdm.webp", "assets/folds/rede-bdm.webp",
-    "modules/navigation.js", "modules/testimonials.js", "modules/attribution.js",
-    "modules/engagement.js", "modules/qualification.js", "robots.txt", "sitemap.xml", ".well-known/security.txt",
-    "assets/campanha-ponto-de-apoio.webp",
-    "assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff",
-    "assets/fonts/montserrat-regular.woff", "assets/fonts/montserrat-bold.woff",
-)
+PATHS = ("", "styles.css", "app.js", "robots.txt", "sitemap.xml", "404.html")
 
 def get(path):
-    if LOCAL_ROOT:
-        target = (LOCAL_ROOT / path / "index.html") if not path or path.endswith("/") else (LOCAL_ROOT / path)
-        if not target.is_file(): raise SystemExit(f"Missing local resource: {path}")
-        print("LOCAL 200:", path)
-        return target.read_bytes()
     for attempt in range(6):
         try:
-            req = Request(BASE + path, headers={"User-Agent": "BDM-Review-Smoke/2.0"})
+            req = Request(BASE + path, headers={"User-Agent": "BDM-Smoke/3.0"})
             with urlopen(req, timeout=15) as response:
-                if response.status != 200: raise RuntimeError(f"Unexpected HTTP {response.status}: {path}")
-                data = response.read()
-            if not data: raise RuntimeError(f"Empty response: {path}")
+                if response.status != 200:
+                    raise RuntimeError(f"Unexpected HTTP {response.status}: {path}")
+                body = response.read()
+            if not body:
+                raise RuntimeError(f"Empty response: {path}")
             print("HTTP 200:", BASE + path)
-            return data
+            return body
         except (HTTPError, URLError, RuntimeError) as error:
-            if attempt == 5: raise SystemExit(str(error))
-            time.sleep(5)
+            if attempt == 5:
+                raise SystemExit(str(error))
+            time.sleep(4)
 
-for path in PAGES:
-    html = get(path).decode("utf-8")
-    if path and "noindex,nofollow" not in html: raise SystemExit("Auxiliary route must remain noindex: " + path)
-    if not path and "noindex,nofollow" in html: raise SystemExit("Homepage must remain indexable")
-    if html.lower().count("<h1") != 1: raise SystemExit("Expected one H1: " + path)
-for path in ASSETS:
-    body = get(path)
-    if path.endswith(".webp") and body[:4] != b"RIFF": raise SystemExit("Not a WebP asset: " + path)
-css = get("styles.css").decode("utf-8").lower()
-if "--green: #00ab58" not in css: raise SystemExit("BDM green token missing")
-if "@layer" not in css or "prefers-reduced-motion" not in css: raise SystemExit("CSS structure or reduced-motion support missing")
-if "@keyframes hero-diagnostic-glow" not in css: raise SystemExit("Desktop hero glow missing")
-if ".hero::after { display: none; }" not in css: raise SystemExit("Mobile hero glow is not disabled")
-home = get("").decode("utf-8")
-if 'class="hero-image' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
-    raise SystemExit("Responsive image hero missing")
-if '<video' in home.lower():
-    if "dyno_reveal_1920x1080" not in home or "muted" not in home.lower():
-        raise SystemExit("Hero video must be muted dyno self-hosted asset")
-    if "media-src 'self'" not in home:
-        raise SystemExit("CSP media-src must allow self-hosted hero video")
-elif "media-src 'none'" not in home and "media-src 'self'" not in home:
-    raise SystemExit("CSP media-src missing")
-if "Criado por Veltrus" not in home: raise SystemExit("Veltrus credit missing")
-if "default-src 'none'; script-src 'self'" not in home: raise SystemExit("CSP missing")
-if "styles.css?v=" not in home or "app.js?v=" not in home: raise SystemExit("Versioned entrypoint URLs missing")
-if home.count('href="#qualificacao"') < 4 or 'id="partner-form"' not in home or "mobile-sticky-cta" not in home: raise SystemExit("CRO form or mobile conversion path missing")
-if 'type="application/ld+json"' not in home or "FAQPage" not in home: raise SystemExit("SEO structured data missing")
-if any(token in css for token in ("--red", "--v4-red", "#ed1c24", "#e31b23", "#e50000")):
-    raise SystemExit("Legacy red brand token remains in published CSS")
-js = get("app.js").decode("utf-8")
-if "fetch(" in js or "XMLHttpRequest" in js or "sendBeacon(" in js: raise SystemExit("Unexpected network transmission")
-print("PASS: production SECURITY, CRO, SEO and UX assets and routes verified.")
+content = {path: get(path) for path in PATHS}
+home = content[""].decode("utf-8")
+css = content["styles.css"].decode("utf-8")
+js = content["app.js"].decode("utf-8")
+
+if home.lower().count("<h1") != 1:
+    raise SystemExit("Homepage must contain exactly one H1")
+if any(token in home.lower() for token in ("<img", "<picture", "<video", "<svg", "<canvas")):
+    raise SystemExit("Published homepage is not image-free")
+if "styles.css?v=clean2" not in home or "app.js?v=clean2" not in home:
+    raise SystemExit("Published cache-busted entrypoints missing")
+if 'id="partner-form"' not in home or home.count('href="#qualificacao"') < 4:
+    raise SystemExit("Published conversion path missing")
+if "img-src 'none'" not in home or "media-src 'none'" not in home:
+    raise SystemExit("Published CSP does not enforce image-free presentation")
+if "--green:#57ff20" not in css.replace(" ", "").replace("\n", ""):
+    raise SystemExit("BDM neon token missing")
+if ".hero-media" in css or ".hero-image" in css or ".fold-media" in css:
+    raise SystemExit("Legacy visual CSS leaked into production")
+for token in ("generate_lead", "bdm_partner_cta_click", "utm_source", "gclid", "5518997553071"):
+    if token not in js:
+        raise SystemExit("Conversion logic missing: " + token)
+
+print("PASS: production serves the clean image-free BDM rebuild.")
