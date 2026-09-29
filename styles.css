@@ -2,3 +2,55 @@
 @media(max-width:1050px){.shell{width:min(100% - 44px,1440px)}.site-header{grid-template-columns:1fr 240px}.site-header nav{display:none}.header-cta{grid-column:2}.hero{min-height:1070px}.hero-bottom .services{grid-template-columns:repeat(3,1fr)}.services li{min-height:66px}.services li:nth-child(3){border-right:0}.services li:nth-child(-n+3){border-bottom:1px solid var(--line)}.advantages{grid-template-columns:repeat(2,1fr)}.advantages article:nth-child(4n){border-right:1px solid rgba(87,255,32,.38)}.advantages article:nth-child(2n){border-right:0}.steps{grid-template-columns:repeat(2,1fr)}.steps li:nth-child(2){border-right:0}.steps li:nth-child(-n+2){border-bottom:1px solid rgba(5,7,5,.25)}.faq-grid,.form-layout{grid-template-columns:1fr;gap:65px}.faq-grid .split-head{display:grid;grid-template-columns:22% 1fr}.segment-rail{display:none}.about-grid{gap:5vw}}
 @media(max-width:700px){.shell{width:calc(100% - 28px)}.site-header{height:69px;grid-template-columns:1fr 152px}.brand-mark{width:27px;height:25px}.brand-mark i{width:9px;height:25px}.brand b{font-size:27px}.brand small{margin-top:5px;font-size:5px}.header-cta{height:39px;padding:0 10px;font-size:8px}.hero{min-height:1130px}.hero-video{object-position:64% 45%}.hero-wash{background:linear-gradient(180deg,rgba(0,0,0,.56) 0%,rgba(0,0,0,.12) 34%,rgba(0,0,0,.8) 61%,#050705 87%)}.hero-inner{padding-top:109px}.eyebrow{margin-bottom:12px;font-size:8px}.eyebrow span{width:42px;height:3px}.hero h1{font-size:clamp(72px,21vw,100px);line-height:.76}.hero-lead{margin-top:19px;font-size:13px}.hero-promise{margin:21px 0 18px;padding-top:13px;font-size:9px}.campaign-cta{width:100%;min-height:55px;font-size:10px}.hero-bottom{bottom:0}.proofs{grid-template-columns:repeat(3,1fr)}.proofs p{min-height:77px;display:grid;justify-items:center;align-content:center;gap:4px;padding:7px!important;text-align:center}.proofs strong{font-size:clamp(31px,10vw,45px)}.proofs span{font-size:6px;line-height:1.35}.services li{font-size:7px;letter-spacing:.06em}.services svg{width:21px;height:20px}.section,.section-light,.form-section{padding:78px 0}.split-head,.faq-grid .split-head{display:block}.index{margin-bottom:18px;font-size:9px}.section h2,.section-light h2,.form-section h2{font-size:clamp(63px,18vw,87px);line-height:.77}.about-grid{grid-template-columns:1fr;gap:14px;margin-top:42px}.statement{font-size:24px}.about-grid div{font-size:14px}.opportunity-copy{margin:45px 14px 0;font-size:22px}.advantages{margin-top:55px}.advantages article{min-height:215px;padding:18px 12px}.advantages h3{margin-top:38px;font-size:24px}.advantages p{font-size:11px}.steps{margin-top:50px}.steps li{min-height:205px;padding:18px 12px}.steps h3{margin-top:40px;font-size:27px}.steps p{font-size:11px}.faq{padding-bottom:82px}.faq-grid{gap:40px}summary{min-height:74px;font-size:12px;padding-right:15px}.faq-list details p{font-size:13px;padding-right:5px}.final{padding-bottom:75px}.final-layout{grid-template-columns:1fr;gap:45px}.final-lead{font-size:13px}.final li{font-size:24px}.form-layout{gap:48px}form{grid-template-columns:1fr;gap:19px}.footer{grid-template-columns:1fr;gap:15px;padding:28px 0}.footer p{line-height:1.5}.footer small{font-size:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.campaign-cta{transition:none}.hero-video{display:none}.hero{background:url("assets/hero/bdm-authorized-hero-768.webp") 65% center/cover no-repeat}}
+
+/* More room between campaign sections and their content. */
+.section,.section-light,.form-section{padding-top:148px;padding-bottom:148px}
+.about-grid{margin-top:82px;padding-top:36px}
+.opportunity-copy{margin-top:76px;line-height:1.45}
+.advantages{margin-top:112px}
+.advantages article{min-height:278px;padding:28px 24px}
+.advantages h3{margin-top:64px;line-height:1.02}
+.steps{margin-top:96px}
+.steps li{min-height:310px;padding:30px 28px}
+.steps h3{margin-top:82px;line-height:1}
+.faq-grid{gap:10vw}
+summary{min-height:102px}
+.final{padding-bottom:125px}
+.final-layout{gap:10vw}
+.final li{padding:25px 0}
+.form-layout{gap:10vw}
+form{gap:28px 30px}
+input,select{height:56px}
+
+@media(min-width:1051px) and (max-height:950px){
+  .hero-inner{padding-top:112px}
+  .hero h1{font-size:clamp(88px,9.3vw,145px)}
+  .hero-lead{margin-top:20px}
+  .hero-promise{margin:20px 0 18px}
+  .campaign-cta{min-height:58px}
+}
+@media(max-width:1050px){
+  .section,.section-light,.form-section{padding-top:112px;padding-bottom:112px}
+  .steps li{min-height:275px}
+}
+@media(max-width:700px){
+  .hero h1{font-size:clamp(60px,19vw,90px);line-height:.9}
+  .section h2,.section-light h2,.form-section h2{font-size:clamp(60px,16.7vw,82px)}
+  .section,.section-light,.form-section{padding-top:94px;padding-bottom:94px}
+  .about-grid{margin-top:52px;padding-top:24px;gap:24px}
+  .opportunity-copy{margin-top:54px;line-height:1.5}
+  .advantages{margin-top:70px}
+  .advantages article{min-height:244px;padding:22px 14px}
+  .advantages h3{margin-top:46px;font-size:22px}
+  .steps{margin-top:65px}
+  .steps li{min-height:230px;padding:22px 14px}
+  .steps h3{margin-top:52px;font-size:25px}
+  .faq-grid{gap:52px}
+  summary{min-height:84px;line-height:1.5}
+  .final{padding-bottom:92px}
+  .final-layout{gap:56px}
+  .final li{padding:23px 0}
+  .form-layout{gap:58px}
+  form{gap:23px}
+}
+.final{overflow:hidden}
