@@ -108,8 +108,17 @@ if "--green: #00ab58" not in css.lower(): ERRORS.append("Brand green token missi
 if "@keyframes hero-diagnostic-glow" not in css: ERRORS.append("Subtle desktop hero glow is missing")
 if ".hero::after { display: none; }" not in css: ERRORS.append("Mobile hero glow must be disabled")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
-    ERRORS.append("Responsive image hero missing or video remains")
+if 'class="hero-image' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
+    ERRORS.append("Responsive image hero missing")
+if '<video' in home.lower():
+    if "dyno_reveal_1920x1080" not in home or "muted" not in home.lower() or "playsinline" not in home.lower():
+        ERRORS.append("Hero video must be muted/playsinline dyno self-hosted asset")
+    if "media-src 'self'" not in home:
+        ERRORS.append("CSP media-src must allow self-hosted hero video")
+    if not (ROOT / "assets/3d/web/dyno_reveal_1920x1080.mp4").is_file():
+        ERRORS.append("Missing dyno hero mp4")
+elif "media-src 'none'" not in home and "media-src 'self'" not in home:
+    ERRORS.append("CSP media-src missing")
 if "Criado por Veltrus" not in home: ERRORS.append("Veltrus production credit missing")
 if "default-src 'none'; script-src 'self'" not in home or "object-src 'none'" not in home:
     ERRORS.append("Restrictive CSP missing")

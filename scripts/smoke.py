@@ -54,8 +54,15 @@ if "@layer" not in css or "prefers-reduced-motion" not in css: raise SystemExit(
 if "@keyframes hero-diagnostic-glow" not in css: raise SystemExit("Desktop hero glow missing")
 if ".hero::after { display: none; }" not in css: raise SystemExit("Mobile hero glow is not disabled")
 home = get("").decode("utf-8")
-if '<video' in home.lower() or 'class="hero-image"' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
-    raise SystemExit("Responsive image hero missing or video remains")
+if 'class="hero-image' not in home or 'bdm-hero-7680.webp 7680w' not in home or 'bdm-hero-mobile-1440.webp 1440w' not in home:
+    raise SystemExit("Responsive image hero missing")
+if '<video' in home.lower():
+    if "dyno_reveal_1920x1080" not in home or "muted" not in home.lower():
+        raise SystemExit("Hero video must be muted dyno self-hosted asset")
+    if "media-src 'self'" not in home:
+        raise SystemExit("CSP media-src must allow self-hosted hero video")
+elif "media-src 'none'" not in home and "media-src 'self'" not in home:
+    raise SystemExit("CSP media-src missing")
 if "Criado por Veltrus" not in home: raise SystemExit("Veltrus credit missing")
 if "default-src 'none'; script-src 'self'" not in home: raise SystemExit("CSP missing")
 if "styles.css?v=" not in home or "app.js?v=" not in home: raise SystemExit("Versioned entrypoint URLs missing")

@@ -388,14 +388,29 @@
   .aggressive-header .nav-cta { color: #07110b; background: var(--green-bright); text-transform: uppercase; }
   .aggressive-header .nav-cta:hover { background: #7cffb5; }
 
-  .hero-recruitment .hero-media { display: none; }
-  .hero-recruitment .hero-image { object-position: 68% center; }
-  @media (min-width: 761px) {
-    .hero-recruitment .hero-media { display: block; }
-    .hero-recruitment .hero-image-fallback {
-      opacity: 0;
-      /* keep in DOM for LCP/preload and no-JS fallback painting */
-    }
+  .hero-recruitment .hero-media {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background: #090b0a;
+  }
+  .hero-recruitment .hero-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% 48%;
+  }
+  .hero-recruitment .hero-image { object-position: 62% 48%; }
+  .hero-recruitment .hero-image-fallback { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-recruitment .hero-media { display: none; }
+    .hero-recruitment .hero-image-fallback { opacity: 1; }
   }
   .hero-recruitment > picture {
     position: absolute;
@@ -428,10 +443,7 @@
     content: "";
   }
   .hero-speed-lines::after { display: none; content: ""; }
-  .hero-recruitment .hero-image {
-    object-position: 68% center;
-    filter: none;
-  }
+  .hero-recruitment .hero-image { object-position: 62% 48%; filter: none; }
   .hero-recruitment .hero-grid { min-height: calc(100svh - 9.8rem); align-items: center; padding-block: clamp(4.5rem,8vw,8rem) clamp(3rem,6vw,5.5rem); }
   .hero-recruitment .hero-grid.container { width: min(calc(100% - 2 * var(--gutter)), 1280px); padding-inline: 0; }
   .hero-recruitment .hero-copy { max-width: min(50rem, 100%); min-width: 0; }

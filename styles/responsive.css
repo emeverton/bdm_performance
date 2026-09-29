@@ -191,7 +191,8 @@
   .hero-recruitment::after { display: block; background: radial-gradient(circle at 58% 34%,rgba(0,213,99,.28),transparent 16%); opacity: .55; animation: none; }
   .hero-recruitment .hero-image,
   .hero-recruitment .hero-media,
-  .hero-recruitment .hero-media video { object-position: center 45%; }
+  .hero-recruitment .hero-media video,
+  .hero-recruitment .hero-video { object-position: 58% 42%; }
   .hero-speed-lines::before { width: 70vw; bottom: 22%; opacity: .7; }
   .hero-speed-lines::after { display: none; }
   .mobile-sticky-cta { z-index: 40; }
