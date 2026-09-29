@@ -1,28 +1,74 @@
-const PHONE="5518997553071";
-const ATTR_KEY="bdm_attribution";
-const clean=(v,l=120)=>String(v||"").slice(0,l).replace(/[<>]/g,"").trim();
-function initAttribution(){
-  const p=new URLSearchParams(location.search);
-  const keys=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","gbraid","wbraid","fbclid"];
-  let stored={};try{stored=JSON.parse(sessionStorage.getItem(ATTR_KEY)||"{}")}catch{}
-  const a={};for(const k of keys)a[k]=clean(p.get(k)||stored[k]||"");
-  a.landing_path=clean(stored.landing_path||location.pathname,160);
-  try{sessionStorage.setItem(ATTR_KEY,JSON.stringify(a))}catch{}
-  document.querySelectorAll("[data-cta-id]").forEach(el=>el.addEventListener("click",()=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"bdm_partner_cta_click",cta_id:el.dataset.ctaId,...a})}));
+const ATTRIBUTION_KEY = "bdm_partner_attribution";
+const ATTRIBUTION_FIELDS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid"];
+const WHATSAPP_NUMBER = "5518997553071";
+
+const sanitize = (value, max = 120) => String(value || "").replace(/[<>]/g, "").trim().slice(0, max);
+const pushEvent = (event, values = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...values });
+};
+
+function attribution() {
+  const params = new URLSearchParams(window.location.search);
+  let prior = {};
+  try { prior = JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY) || "{}"); } catch (_) { /* session storage unavailable */ }
+  const values = Object.fromEntries(ATTRIBUTION_FIELDS.map((key) => [key, sanitize(params.get(key) || prior[key]) ]));
+  try { sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(values)); } catch (_) { /* optional persistence */ }
+  return values;
 }
-function readAttribution(){try{return JSON.parse(sessionStorage.getItem(ATTR_KEY)||"{}")}catch{return{}}}
-function initForm(){
-  const f=document.querySelector("#partner-form"),err=document.querySelector("#form-error");if(!f||!err)return;
-  f.addEventListener("submit",e=>{
-    e.preventDefault();
-    const fields=[...f.querySelectorAll("[required]")],bad=fields.filter(x=>!x.checkValidity());
-    if(bad.length){err.textContent="Preencha os campos obrigatórios para continuar.";bad[0].focus();return}
-    const d=new FormData(f),a=readAttribution();
-    const lead={name:clean(d.get("name"),100),phone:clean(d.get("phone"),20),region:clean(d.get("region"),100),role:clean(d.get("automotive_role"),100),capital:clean(d.get("capital"),100)};
-    window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"generate_lead",lead_type:"authorized_representative",region:lead.region,automotive_role:lead.role,capital_status:lead.capital,...a});
-    const origin=[a.utm_source,a.utm_medium,a.utm_campaign].filter(Boolean).join(" / ");
-    const msg=["Olá, BDM. Quero saber mais sobre ser um autorizado.","","Nome: "+lead.name,"WhatsApp: "+lead.phone,"Cidade/região: "+lead.region,"Atuação: "+lead.role,"Capital: "+lead.capital,origin?"Origem: "+origin:""].filter(Boolean).join("\n");
-    location.assign("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
+
+const storedAttribution = attribution();
+document.querySelectorAll("[data-cta]").forEach((cta) => cta.addEventListener("click", () => {
+  pushEvent("bdm_partner_cta_click", { cta_id: cta.dataset.cta, ...storedAttribution });
+}));
+
+document.querySelectorAll("details").forEach((item) => item.addEventListener("toggle", () => {
+  if (item.open) pushEvent("bdm_faq_open", { question: sanitize(item.querySelector("summary").textContent, 120) });
+}));
+
+const finalSection = document.querySelector(".final");
+if (finalSection && "IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    pushEvent("bdm_final_cta_view");
+    observer.disconnect();
+  }, { threshold: 0.4 });
+  observer.observe(finalSection);
+}
+
+const form = document.querySelector("#partner-form");
+const formError = document.querySelector("#form-error");
+form?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!form.checkValidity()) {
+    formError.textContent = "Preencha os campos obrigatórios para continuar.";
+    form.querySelector(":invalid")?.focus();
+    return;
+  }
+  const values = new FormData(form);
+  const lead = {
+    name: sanitize(values.get("name"), 100),
+    phone: sanitize(values.get("phone"), 20),
+    region: sanitize(values.get("region"), 100),
+    automotiveRole: sanitize(values.get("automotive_role"), 100),
+    capitalStatus: sanitize(values.get("capital_status"), 100)
+  };
+  pushEvent("generate_lead", {
+    lead_type: "authorized_representative",
+    automotive_role: lead.automotiveRole,
+    capital_status: lead.capitalStatus,
+    region: lead.region,
+    ...storedAttribution
   });
-}
-initAttribution();initForm();const y=document.querySelector("#year");if(y)y.textContent=new Date().getFullYear();
+  const message = [
+    "Olá, BDM. Quero ser um autorizado.", "",
+    `Nome: ${lead.name}`,
+    `WhatsApp: ${lead.phone}`,
+    `Cidade e estado: ${lead.region}`,
+    `Atuação no automotivo: ${lead.automotiveRole}`,
+    `Capital: ${lead.capitalStatus}`
+  ].join("\n");
+  window.location.assign(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`);
+});
+
+document.querySelector("#year").textContent = new Date().getFullYear();

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://emeverton.github.io/bdm_performance/sitemap.xml
