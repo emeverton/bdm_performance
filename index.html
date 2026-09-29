@@ -3,211 +3,159 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050705">
+  <meta name="theme-color" content="#040504">
   <meta name="robots" content="index,follow,max-snippet:-1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; media-src 'none'; font-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <meta name="description" content="Seja um autorizado BDM Performance. Engenharia própria, estrutura flexível e suporte para desenvolver sua região.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'none'; connect-src 'none'; frame-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="description" content="Seja um autorizado BDM Performance. Leve a performance para a sua cidade.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Seja um autorizado BDM Performance">
   <meta property="og:description" content="Leve a performance BDM para a sua cidade.">
   <meta property="og:url" content="https://emeverton.github.io/bdm_performance/">
+  <meta property="og:image" content="https://emeverton.github.io/bdm_performance/hero-bg.webp">
   <link rel="canonical" href="https://emeverton.github.io/bdm_performance/">
+  <link rel="preload" as="image" href="./hero-bg.webp" fetchpriority="high">
   <title>Seja um autorizado BDM Performance</title>
-  <link rel="stylesheet" href="./styles.css?v=hero-2">
-  <script src="./app.js?v=clean-1" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=bdm-rebuild-1">
+  <script src="./app.js?v=bdm-rebuild-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header">
-    <div class="shell header-inner">
-      <a class="brand" href="./" aria-label="BDM Performance, início">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
-        <span class="brand-text"><strong>BDM</strong><small>PERFORMANCE</small></span>
-      </a>
-      <nav class="desktop-nav" aria-label="Navegação principal">
-        <a href="#quem-somos">Quem somos</a>
-        <a href="#oportunidade">Oportunidade</a>
-        <a href="#modelo">Modelo</a>
-        <a href="#duvidas">Dúvidas</a>
-      </nav>
-      <a class="header-cta" href="#qualificacao" data-cta-id="header">Quero ser um autorizado</a>
-    </div>
-  </header>
-
   <main id="conteudo">
-    <section class="hero dark-section" aria-labelledby="hero-title">
-      <div class="hero-stage" aria-hidden="true">
-        <span class="garage-line garage-line-a"></span>
-        <span class="garage-line garage-line-b"></span>
-        <span class="garage-line garage-line-c"></span>
-        <span class="garage-glow"></span>
+    <section class="hero" aria-labelledby="hero-title">
+      <header class="hero-header wrap">
+        <a class="brand" href="./" aria-label="BDM Performance">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>
+          <span class="brand-name"><b>BDM</b><small>PERFORMANCE</small></span>
+        </a>
 
-        <div class="performance-car">
-          <span class="car-shadow"></span>
-          <span class="car-roof"></span>
-          <span class="car-glass"></span>
-          <span class="car-body"></span>
-          <span class="rear-light"></span>
-          <span class="plate">BDM</span>
-          <span class="wheel wheel-left"></span>
-          <span class="wheel wheel-right"></span>
-          <span class="exhaust exhaust-left"></span>
-          <span class="exhaust exhaust-right"></span>
-        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="#oportunidade">Oportunidade</a>
+          <a href="#vantagens">Vantagens</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#duvidas">FAQ</a>
+        </nav>
 
-        <span class="hero-mark hero-mark-a"></span>
-        <span class="hero-mark hero-mark-b"></span>
-      </div>
+        <a class="top-cta" href="#qualificacao" data-cta-id="header">Quero ser um autorizado <span>→</span></a>
+      </header>
 
-      <aside class="hero-rail" aria-label="Segmentos atendidos">
-        <span class="rail-line"></span>
-        <p>Carros<br>Pickups<br>SUVs<br>Diesel<br>Motos<br>Agro</p>
-        <strong>Performance<br>não tem<br>fronteiras.</strong>
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+
+      <aside class="side-rail" aria-label="Segmentos">
+        <span></span>
+        <p>CARROS<br>PICKUPS<br>SUVS<br>DIESEL<br>MOTOS<br>AGRO</p>
+        <strong>PERFORMANCE<br>NÃO TEM<br>FRONTEIRAS.</strong>
       </aside>
 
-      <div class="shell hero-main">
-        <div class="hero-left">
-          <p class="eyebrow"><span></span> Performance real. Novos destinos.</p>
-          <h1 id="hero-title"><span>Seja um</span><em>autorizado</em><em>BDM</em></h1>
-          <p class="hero-rally">Leve a performance<br>para a <strong>sua cidade.</strong></p>
-          <p class="hero-kicker">Mais potência.<br>Mais clientes.<br>Mais resultados.</p>
+      <div class="wrap hero-content">
+        <div class="hero-copy">
+          <p class="kicker"><i></i> Performance real. Novos destinos.</p>
+
+          <h1 id="hero-title">
+            <span>SEJA UM</span>
+            <em>AUTORIZADO</em>
+            <em>BDM</em>
+          </h1>
+
+          <p class="hero-subtitle">LEVE A PERFORMANCE<br>PARA A <strong>SUA CIDADE.</strong></p>
+
+          <p class="hero-punch">MAIS POTÊNCIA.<br>MAIS CLIENTES.<br>MAIS RESULTADOS.</p>
         </div>
 
-        <div class="hero-side">
-          <div class="hero-side-rule"></div>
-          <p>Faça parte<br>de uma rede que<br><strong>não para de crescer.</strong></p>
-          <a class="button hero-card-cta" href="#qualificacao" data-cta-id="hero">Quero ser um autorizado <b>→</b></a>
-          <small>Modelo validado. Suporte real. Alto potencial.</small>
-        </div>
-      </div>
-
-      <div class="shell hero-services" aria-label="Soluções BDM">
-        <article><span class="service-symbol service-remap"></span><strong>Remap</strong></article>
-        <article><span class="service-symbol service-chip"></span><strong>Chip de potência</strong></article>
-        <article><span class="service-symbol service-pedal"></span><strong>Pedal booster</strong></article>
-        <article><span class="service-symbol service-downpipe"></span><strong>Downpipe</strong></article>
-        <article><span class="service-symbol service-filter"></span><strong>Filtros</strong></article>
-        <article><span class="service-symbol service-gear"></span><strong>Acessórios</strong></article>
-      </div>
-
-      <div class="shell hero-metrics">
-        <article><strong>+19</strong><span>Anos<br>de experiência</span></article>
-        <article><strong>+70</strong><span>Autorizados<br>no Brasil e Paraguai</span></article>
-        <article><strong>+50.000</strong><span>Atendimentos</span></article>
-      </div>
-    </section>
-
-    <section class="identity dark-section" id="quem-somos" aria-labelledby="identity-title">
-      <div class="shell section-index"><span>02 / 04</span><i></i><strong>BDM PERFORMANCE</strong></div>
-
-      <div class="shell identity-layout">
-        <div>
-          <p class="eyebrow"><span></span> Engenharia, rede e experiência</p>
-          <h2 id="identity-title"><span>Quem</span><em>somos</em></h2>
-        </div>
-        <div class="copy-column">
-          <p class="lead">Há 19 anos no mercado, a BDM Performance transforma conhecimento técnico em performance e preparação de alto nível.</p>
-          <p>Desde 2007, a operação combina desenvolvimento, inovação, engenharia própria e uma rede de autorizados conectada à retaguarda BDM.</p>
-          <p>O modelo foi construído para quem quer crescer no mercado automotivo sem depender de uma operação improvisada.</p>
+        <div class="hero-offer">
+          <span class="offer-line"></span>
+          <p>FAÇA PARTE<br>DE UMA REDE QUE<br><strong>NÃO PARA DE CRESCER.</strong></p>
+          <a class="offer-button" href="#qualificacao" data-cta-id="hero_offer">QUERO SER UM AUTORIZADO <b>→</b></a>
+          <small>ENGENHARIA PRÓPRIA. SUPORTE REAL. NOVOS MERCADOS.</small>
         </div>
       </div>
 
-      <div class="shell metrics">
-        <article><strong>+19</strong><span>Anos de experiência e conhecimento técnico</span></article>
-        <article><strong>+70</strong><span>Autorizados distribuídos pela rede</span></article>
-        <article><strong>+50.000</strong><span>Atendimentos nos últimos 5 anos</span></article>
+      <div class="wrap service-strip" aria-label="Soluções BDM">
+        <article><span class="service-icon engine"></span><strong>REMAP</strong></article>
+        <article><span class="service-icon chip"></span><strong>CHIP DE<br>POTÊNCIA</strong></article>
+        <article><span class="service-icon pedal"></span><strong>PEDAL<br>BOOSTER</strong></article>
+        <article><span class="service-icon pipe"></span><strong>DOWNPIPE</strong></article>
+        <article><span class="service-icon filter"></span><strong>FILTROS</strong></article>
+        <article><span class="service-icon gear"></span><strong>ACESSÓRIOS</strong></article>
       </div>
 
-      <div class="shell statement"><span></span><p>Uma história construída sobre <strong>pessoas, performance e resultados.</strong></p></div>
-    </section>
-
-    <section class="opportunity dark-section" id="oportunidade" aria-labelledby="opportunity-title">
-      <div class="shell section-index"><span>03 / 04</span><i></i><strong>EXPANSÃO BDM</strong></div>
-
-      <div class="shell opportunity-layout">
-        <div>
-          <h2 id="opportunity-title"><span>Leve a</span><em>performance BDM</em><span>para a sua cidade.</span></h2>
-        </div>
-        <div class="opportunity-copy">
-          <p>Você já tem o mercado. A BDM tem produto, estrutura, engenharia e suporte para o negócio ir mais longe.</p>
-          <a class="text-link" href="#qualificacao" data-cta-id="opportunity">Consultar minha região <b>↘</b></a>
-        </div>
-      </div>
-
-      <div class="shell benefit-grid">
-        <article><span class="diamond-icon"></span><h3>Baixo investimento</h3><p>Comece com uma estrutura enxuta e viável.</p></article>
-        <article><span class="diamond-icon"></span><h3>Payback de até 12 meses</h3><p>Potencial de retorno em curto prazo, sem promessa de resultado.</p></article>
-        <article><span class="diamond-icon"></span><h3>Estrutura flexível</h3><p>Do container à grande unidade, anexo ou espaço individual.</p></article>
-        <article><span class="diamond-icon"></span><h3>Estoque virtual</h3><p>Venda sem precisar manter um grande estoque físico.</p></article>
-        <article><span class="diamond-icon"></span><h3>Flexibilidade de pagamento</h3><p>Condições ajustadas ao fluxo de caixa e ao projeto.</p></article>
-        <article><span class="diamond-icon"></span><h3>Plano de portabilidade</h3><p>Transição para quem já opera com outra empresa.</p></article>
-        <article><span class="diamond-icon"></span><h3>Engenharia própria</h3><p>Desenvolvimento técnico e soluções construídas dentro da BDM.</p></article>
-        <article><span class="diamond-icon"></span><h3>Rede de apoio</h3><p>Conhecimento e oportunidades compartilhados entre mais de 70 unidades.</p></article>
-      </div>
-
-      <p class="shell opportunity-close">Uma oportunidade real <em>para o seu negócio.</em></p>
-    </section>
-
-    <section class="model light-section" id="modelo" aria-labelledby="model-title">
-      <div class="shell two-column">
-        <div>
-          <p class="eyebrow dark-eyebrow"><span></span> Da conversa à operação</p>
-          <h2 id="model-title">Quatro passos.<br><em>Sem teatro.</em></h2>
-        </div>
-        <ol class="steps">
-          <li><span>01</span><div><h3>Qualificação</h3><p>Região, atuação e capacidade de investimento.</p></div></li>
-          <li><span>02</span><div><h3>Conversa direta</h3><p>Entendimento do modelo, estrutura e condições.</p></div></li>
-          <li><span>03</span><div><h3>Validação da região</h3><p>Território, aderência comercial e formato operacional.</p></div></li>
-          <li><span>04</span><div><h3>Treinamento e suporte</h3><p>Início da operação com processo e retaguarda técnica.</p></div></li>
-        </ol>
+      <div class="wrap proof-strip" aria-label="Números da BDM">
+        <article><strong>+19</strong><p><b>ANOS</b><br>DE EXPERIÊNCIA</p></article>
+        <article><strong>+70</strong><p><b>AUTORIZADOS</b><br>NO BRASIL E PARAGUAI</p></article>
+        <article><strong>+50.000</strong><p><b>ATENDIMENTOS</b></p></article>
       </div>
     </section>
 
-    <section class="faq dark-section" id="duvidas" aria-labelledby="faq-title">
-      <div class="shell two-column faq-layout">
-        <div>
-          <p class="eyebrow"><span></span> Antes de entrar</p>
-          <h2 id="faq-title">Perguntas<br>que você<br><em>deve fazer.</em></h2>
+    <section class="section opportunity" id="oportunidade">
+      <div class="wrap section-head">
+        <p>01 / A OPORTUNIDADE</p>
+        <h2>O MERCADO JÁ EXISTE.<br><em>FALTA A SUA BDM.</em></h2>
+      </div>
+
+      <div class="wrap intro-grid">
+        <p class="intro-lead">Você já conhece o mercado automotivo. A BDM entra com engenharia, marca, treinamento e retaguarda para transformar demanda em uma nova frente de negócio.</p>
+        <p class="intro-side">Uma operação para quem quer vender performance, desenvolver território e construir presença local.</p>
+      </div>
+    </section>
+
+    <section class="section advantages" id="vantagens">
+      <div class="wrap section-head">
+        <p>02 / VANTAGENS</p>
+        <h2>ESTRUTURA PARA<br><em>ACELERAR.</em></h2>
+      </div>
+
+      <div class="wrap advantages-grid">
+        <article><span>01</span><h3>ENGENHARIA PRÓPRIA</h3><p>Desenvolvimento técnico e suporte centralizado.</p></article>
+        <article><span>02</span><h3>ESTRUTURA FLEXÍVEL</h3><p>Modelo adaptável ao tamanho e à realidade da operação.</p></article>
+        <article><span>03</span><h3>ESTOQUE VIRTUAL</h3><p>Venda sem imobilizar capital em um grande estoque físico.</p></article>
+        <article><span>04</span><h3>REDE DE APOIO</h3><p>Experiência compartilhada entre mais de 70 autorizados.</p></article>
+      </div>
+    </section>
+
+    <section class="section process" id="como-funciona">
+      <div class="wrap section-head">
+        <p>03 / COMO FUNCIONA</p>
+        <h2>DA CONVERSA<br><em>À OPERAÇÃO.</em></h2>
+      </div>
+
+      <ol class="wrap process-list">
+        <li><span>01</span><div><h3>QUALIFICAÇÃO</h3><p>Perfil, região, estrutura e capacidade de investimento.</p></div></li>
+        <li><span>02</span><div><h3>VALIDAÇÃO</h3><p>Aderência comercial e disponibilidade territorial.</p></div></li>
+        <li><span>03</span><div><h3>IMPLANTAÇÃO</h3><p>Definição do formato, treinamento e preparação operacional.</p></div></li>
+        <li><span>04</span><div><h3>SUPORTE</h3><p>Retaguarda técnica para desenvolver o mercado local.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="section faq" id="duvidas">
+      <div class="wrap faq-layout">
+        <div class="section-head">
+          <p>04 / SEM LETRAS MIÚDAS</p>
+          <h2>PERGUNTAS<br><em>ANTES DE ENTRAR.</em></h2>
         </div>
+
         <div class="faq-list">
-          <details><summary>Qual é o investimento para entrar na rede?</summary><p>A análise comercial considera investimento entre R$50 mil e R$150 mil, além da estrutura atual e das condições da região.</p></details>
-          <details><summary>Preciso ter perfil técnico?</summary><p>Não necessariamente. A BDM fornece engenharia e suporte técnico, enquanto o autorizado desenvolve o mercado local.</p></details>
-          <details><summary>Preciso manter um grande estoque?</summary><p>O modelo contempla estoque virtual e estrutura flexível, de acordo com a operação definida.</p></details>
-          <details><summary>O payback em até 12 meses é garantido?</summary><p>Não. É uma referência de potencial. Região, execução comercial, investimento e operação alteram o resultado.</p></details>
+          <details><summary>QUAL É O INVESTIMENTO?</summary><p>A análise considera estrutura, território, equipamentos e perfil da operação. O material comercial apresentado pela BDM trabalha com faixas conforme o projeto.</p></details>
+          <details><summary>PRECISO TER PERFIL TÉCNICO?</summary><p>O perfil comercial é decisivo. A estrutura BDM fornece treinamento, engenharia e retaguarda técnica.</p></details>
+          <details><summary>PRECISO MANTER GRANDE ESTOQUE?</summary><p>O modelo contempla estoque virtual e estrutura flexível, conforme a configuração da operação.</p></details>
+          <details><summary>COMO É VALIDADA A REGIÃO?</summary><p>A disponibilidade territorial é analisada antes do avanço comercial para reduzir sobreposição entre autorizados.</p></details>
         </div>
       </div>
     </section>
 
-    <section class="final dark-section" aria-labelledby="final-title">
-      <div class="shell section-index"><span>04 / 04</span><i></i><strong>PRÓXIMO PASSO</strong></div>
-
-      <div class="shell final-layout">
-        <h2 id="final-title"><span>Seu próximo</span><span>negócio pode ser</span><em>uma BDM.</em></h2>
-        <p>Performance ao seu alcance. Um modelo completo, direto e construído para quem quer desenvolver mercado.</p>
-      </div>
-
-      <div class="shell conversation-grid">
-        <article><span>01</span><h3>O investimento</h3><p>Opções e condições para o seu fluxo de caixa.</p></article>
-        <article><span>02</span><h3>A sua estrutura</h3><p>O que você já tem e o que precisa adaptar.</p></article>
-        <article><span>03</span><h3>Suas expectativas</h3><p>Objetivos, região e capacidade comercial.</p></article>
-        <article><span>04</span><h3>Suas dúvidas</h3><p>Respostas claras antes de qualquer decisão.</p></article>
-      </div>
-    </section>
-
-    <section class="qualification light-section" id="qualificacao" aria-labelledby="qualification-title">
-      <div class="shell two-column qualification-layout">
+    <section class="qualification" id="qualificacao">
+      <div class="wrap qualification-layout">
         <div>
-          <p class="eyebrow dark-eyebrow"><span></span> Análise de perfil</p>
-          <h2 id="qualification-title">Sua região pode ser a próxima <em>BDM.</em></h2>
-          <p class="qualification-copy">Preencha os dados. A conversa começa pela aderência da região, estrutura atual e capacidade de investimento.</p>
-          <div class="territory-note"><strong>Disponibilidade territorial é real.</strong><span>A rede limita a sobreposição entre autorizados para reduzir competição interna.</span></div>
+          <p class="kicker dark-kicker"><i></i> Próximo passo</p>
+          <h2>SUA REGIÃO<br>PODE SER A<br><em>PRÓXIMA BDM.</em></h2>
+          <p class="qualification-copy">Preencha os dados para iniciar a análise de perfil e disponibilidade territorial.</p>
         </div>
 
-        <form id="partner-form" class="qualification-form" novalidate>
-          <div class="form-head"><strong>QUERO SER AUTORIZADO BDM</strong><span>Leva menos de 2 minutos</span></div>
+        <form id="partner-form" novalidate>
+          <div class="form-title"><strong>QUERO SER AUTORIZADO BDM</strong><span>ANÁLISE DE PERFIL</span></div>
 
           <label>Nome completo*
             <input type="text" name="name" autocomplete="name" maxlength="100" required>
@@ -215,64 +163,55 @@
 
           <div class="form-row">
             <label>WhatsApp com DDD*
-              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(00) 00000-0000" required>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" required>
             </label>
             <label>Cidade e estado*
-              <input type="text" name="region" autocomplete="address-level2" maxlength="100" placeholder="Ex.: Maringá, PR" required>
+              <input type="text" name="region" autocomplete="address-level2" maxlength="100" required>
             </label>
           </div>
 
           <label>Já atua no ramo automotivo?*
             <select name="automotive_role" required>
               <option value="">Selecione</option>
-              <option value="Oficina ou centro automotivo">Oficina ou centro automotivo</option>
-              <option value="Som e acessórios">Som e acessórios</option>
-              <option value="Estética automotiva ou PPF">Estética automotiva ou PPF</option>
-              <option value="Outro negócio automotivo">Outro negócio automotivo</option>
-              <option value="Ainda não atuo">Ainda não atuo</option>
+              <option>Oficina ou centro automotivo</option>
+              <option>Som e acessórios</option>
+              <option>Estética automotiva ou PPF</option>
+              <option>Outro negócio automotivo</option>
+              <option>Ainda não atuo</option>
             </select>
           </label>
 
-          <label>Tem capital disponível para investimento entre R$50 mil e R$150 mil?*
+          <label>Faixa de capital disponível?*
             <select name="capital" required>
               <option value="">Selecione</option>
-              <option value="Sim, tenho capital disponível">Sim, tenho capital disponível</option>
-              <option value="Tenho parte e preciso avaliar condições">Tenho parte e preciso avaliar condições</option>
-              <option value="Ainda não tenho capital disponível">Ainda não tenho capital disponível</option>
+              <option>R$50 mil a R$80 mil</option>
+              <option>R$80 mil a R$120 mil</option>
+              <option>R$120 mil a R$150 mil ou mais</option>
+              <option>Preciso avaliar condições</option>
             </select>
           </label>
 
-          <label class="consent-check">
+          <label class="consent">
             <input type="checkbox" name="lgpd" required>
-            <span>Autorizo o contato da BDM sobre a oportunidade de representação e o tratamento dos dados para essa finalidade.</span>
+            <span>Autorizo o contato da BDM sobre a oportunidade de representação e o tratamento dos dados para esta finalidade.</span>
           </label>
 
-          <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
-          <button class="button submit-button" type="submit">Quero verificar minha região <b>↗</b></button>
-          <p class="form-note">Após o envio, você será direcionado ao WhatsApp oficial da BDM com os dados preenchidos.</p>
+          <p id="form-error" class="form-error" role="alert"></p>
+          <button type="submit">VERIFICAR MINHA REGIÃO <b>→</b></button>
         </form>
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <a class="brand" href="./">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>
+          <span class="brand-name"><b>BDM</b><small>PERFORMANCE</small></span>
+        </a>
+        <p>MAIS PERFORMANCE PARA NOVOS DESTINOS.</p>
+        <span>© <span id="year">2026</span> BDM PERFORMANCE</span>
+      </div>
+    </footer>
   </main>
-
-  <footer class="site-footer dark-section">
-    <div class="shell footer-grid">
-      <a class="brand" href="./" aria-label="BDM Performance, início">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
-        <span class="brand-text"><strong>BDM</strong><small>PERFORMANCE</small></span>
-      </a>
-      <p>Mais performance para novos destinos.</p>
-      <a href="tel:+5518997553071">(18) 99755-3071</a>
-      <span>© <span id="year">2026</span> BDM Performance</span>
-      <small>Criado por Veltrus</small>
-    </div>
-  </footer>
-
-  <a class="mobile-cta" href="#qualificacao" data-cta-id="mobile"><span><strong>Quer entrar para a rede?</strong><small>Verifique sua região</small></span><b>↘</b></a>
-
-  <aside class="consent-banner" id="consent-banner" aria-label="Preferências de privacidade" hidden>
-    <p>Usamos dados de navegação apenas para medir a conversão desta página. Você decide antes de qualquer tracker opcional.</p>
-    <div><button type="button" data-consent="denied">Somente necessários</button><button type="button" data-consent="granted">Aceitar medição</button></div>
-  </aside>
 </body>
 </html>
