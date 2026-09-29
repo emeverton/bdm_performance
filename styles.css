@@ -63,4 +63,7 @@ input,select{height:56px}
 @media(max-width:700px){
   .hero h1{font-size:clamp(55px,15vw,72px);line-height:1.02;letter-spacing:-.04em}
   .hero h1 span,.hero h1 em{margin-bottom:.025em}
+  .section h2,.section-light h2,.form-section h2{line-height:.98}
 }
+
+.section h2,.section-light h2,.form-section h2{line-height:.98}
