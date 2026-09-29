@@ -166,10 +166,10 @@
   .aggressive-heading { grid-template-columns: 1fr; }
   .proof-grid { grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(255,255,255,.12); }
   .proof-grid article { border: 0; background: #111512; }
-  .cinematic-fold { min-height: 58rem; }
-  .opportunity-fold { min-height: 70rem; }
+  .cinematic-fold { min-height: 0; }
+  .opportunity-fold, .business-fold, .authority-fold { min-height: 0; }
   .fold-stats { grid-template-columns: 1fr; }
-  .fold-stats article { min-height: 6.5rem; }
+  .fold-stats article { min-height: 5.5rem; }
   .opportunity-grid, .business-topics { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .pain-grid { grid-template-columns: 1fr; }
   .pain-card { min-height: 15rem; }
@@ -177,7 +177,8 @@
   .advantage-layout, .operator-layout, .qualification-layout { grid-template-columns: 1fr; }
   .advantage-copy, .qualification-copy { position: static; }
   .race-steps { grid-template-columns: repeat(2,1fr); }
-  .operator-visual { min-height: 31rem; }
+  .operator-visual { min-height: 22rem; }
+  .footer-slogan { white-space: normal; letter-spacing: .1em; }
 }
 
 @media (max-width: 760px) {
@@ -185,85 +186,103 @@
   .aggressive-header .menu-toggle { color: #fff; border-color: rgba(255,255,255,.2); background: #121713; }
   .aggressive-header .main-nav { border-color: rgba(255,255,255,.12); background: #0b0e0c; box-shadow: 0 20px 28px rgba(0,0,0,.32); }
   .aggressive-header .main-nav > a:not(.nav-cta) { border-color: rgba(255,255,255,.1); }
-  .hero-recruitment { min-height: 0; }
+  .hero-recruitment { min-height: 0; overflow: hidden; }
   .hero-recruitment::before { background: linear-gradient(180deg,rgba(4,6,5,.22),rgba(4,6,5,.58) 36%,rgba(4,6,5,.97) 76%), linear-gradient(90deg,rgba(4,6,5,.82),transparent 72%); }
   .hero-recruitment::after { display: block; background: radial-gradient(circle at 58% 34%,rgba(0,213,99,.28),transparent 16%); opacity: .55; animation: none; }
   .hero-recruitment .hero-image,
   .hero-recruitment .hero-media,
-  .hero-recruitment .hero-media video { object-position: center 52%; }
-  .hero-speed-lines::before { width: 70vw; bottom: 22%; opacity: .85; }
+  .hero-recruitment .hero-media video { object-position: center 45%; }
+  .hero-speed-lines::before { width: 70vw; bottom: 22%; opacity: .7; }
   .hero-speed-lines::after { display: none; }
   .mobile-sticky-cta { z-index: 40; }
   .consent-banner { z-index: 45; bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px)); }
-  .hero-recruitment .hero-grid { min-height: 42rem; align-items: end; padding-block: 12rem 2rem; }
-  .hero-recruitment .hero-grid.container { width: min(calc(100% - 2 * var(--gutter)),1280px); padding-inline: 0; }
-  .hero-recruitment h1 { max-width: 10ch; font-size: clamp(3.25rem,14vw,5rem); line-height: .85; }
-  .hero-recruitment h1 span { font-size: .5em; }
-  .hero-rally { max-width: 28ch; margin-top: 1rem; font-size: .62rem; letter-spacing: .2em; }
-  .hero-recruitment .hero-lead { max-width: 35rem; font-size: .9rem; line-height: 1.6; }
+  .hero-recruitment .hero-grid {
+    min-height: min(38rem, calc(100svh - 5.5rem));
+    align-items: end;
+    padding-block: 7.5rem 1.6rem;
+    width: min(calc(100% - 2 * var(--gutter)),1280px);
+    padding-inline: 0;
+  }
+  .hero-recruitment .hero-copy { max-width: 100%; }
+  .hero-recruitment h1 {
+    max-width: 100%;
+    font-size: clamp(2.55rem, 11.2vw, 3.85rem);
+    line-height: .88;
+    letter-spacing: -.035em;
+  }
+  .hero-recruitment h1 span { font-size: .48em; }
+  .hero-recruitment h1 em { font-size: 1em; }
+  .hero-rally { max-width: 100%; margin-top: .9rem; font-size: .58rem; letter-spacing: .12em; }
+  .hero-recruitment .hero-lead { max-width: 100%; font-size: .88rem; line-height: 1.55; }
   .hero-recruitment .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-recruitment .button { width: 100%; }
   .hero-recruitment .button-quiet { min-height: 3rem; }
   .hero-disclaimer { font-size: .58rem; }
-  .hero-command-bar { width: 100%; min-height: 4.5rem; grid-template-columns: auto 1fr; padding-inline: var(--gutter); }
+  .hero-command-bar { width: 100%; min-height: 4.2rem; grid-template-columns: auto 1fr; padding-inline: var(--gutter); }
   .hero-command-bar > span:last-child { display: none; }
-  .hero-command-bar strong { font-size: .66rem; }
-  .proof-grid strong { font-size: 3rem; }
-  .proof-grid span { font-size: .6rem; }
+  .hero-command-bar strong { font-size: .62rem; }
+  .proof-grid strong { font-size: 2.7rem; }
+  .proof-grid span { font-size: .58rem; letter-spacing: .1em; }
   .proof-note { text-align: left; }
   .cinematic-fold { min-height: 0; }
   .cinematic-fold::after { background: linear-gradient(112deg,transparent 0 78%,rgba(0,213,99,.22) 78.2%,transparent 79%); }
-  .fold-content { min-height: 57rem; padding-block: 1.4rem 1.5rem; }
+  .fold-content { min-height: 0; padding-block: 1.4rem 1.8rem; }
   .fold-counter { gap: .7rem; font-size: .53rem; letter-spacing: .16em; }
-  .fold-copy, .opportunity-heading, .business-heading { margin-top: 13rem; }
-  .fold-copy h2, .opportunity-heading h2, .business-heading h2 { font-size: clamp(3.4rem,14.5vw,5.2rem); }
+  .fold-copy, .opportunity-heading, .business-heading { margin-top: 4.5rem; max-width: 100%; }
+  .fold-copy h2, .opportunity-heading h2, .business-heading h2 {
+    max-width: 100%;
+    font-size: clamp(2.7rem, 12vw, 4.2rem);
+  }
   .fold-copy > p:last-child, .opportunity-heading > p:last-child, .business-heading > p:last-child { font-size: .78rem; line-height: 1.65; }
-  .authority-fold .fold-media { object-position: 69% center; }
+  .authority-fold .fold-media { object-position: 62% center; }
   .authority-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.14) 0%,rgba(4,6,5,.4) 30%,rgba(4,6,5,.99) 68%), linear-gradient(90deg,rgba(4,6,5,.86),rgba(4,6,5,.1)); }
-  .fold-stats { margin-top: 2rem; }
-  .fold-stats article { min-height: 5.5rem; }
-  .fold-stats strong { font-size: 3.5rem; }
+  .fold-stats { margin-top: 1.6rem; }
+  .fold-stats article { min-height: 5rem; }
+  .fold-stats strong { font-size: 3rem; }
   .fold-signature { font-size: .64rem; letter-spacing: .15em; }
-  .opportunity-fold .fold-content { min-height: 74rem; }
-  .opportunity-fold .fold-media { object-position: 68% top; }
+  .opportunity-fold .fold-content { min-height: 0; }
+  .opportunity-fold .fold-media { object-position: 55% center; }
   .opportunity-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.18) 0%,rgba(4,6,5,.5) 28%,rgba(4,6,5,.99) 56%), linear-gradient(90deg,rgba(4,6,5,.84),rgba(4,6,5,.05)); }
-  .opportunity-grid { margin-top: 2rem; }
-  .opportunity-grid article { min-height: 9.5rem; padding: 1rem; }
+  .opportunity-grid { margin-top: 1.6rem; }
+  .opportunity-grid article { min-height: 8.5rem; padding: 1rem; }
   .opportunity-grid h3 { margin-top: 1.2rem; }
-  .business-fold .fold-content { min-height: 64rem; }
-  .business-fold .fold-media { object-position: 68% top; }
+  .business-fold .fold-content { min-height: 0; }
+  .business-fold .fold-media { object-position: center 35%; }
   .business-fold .fold-overlay { background: linear-gradient(180deg,rgba(4,6,5,.15) 0%,rgba(4,6,5,.5) 30%,rgba(4,6,5,.99) 58%), linear-gradient(90deg,rgba(4,6,5,.82),rgba(4,6,5,.06)); }
-  .business-topics { margin-top: 2rem; }
-  .business-topics article { min-height: 8.5rem; padding: 1rem; }
+  .business-topics { margin-top: 1.6rem; }
+  .business-topics article { min-height: 7.5rem; padding: 1rem; }
   .business-topics h3 { margin-top: 1rem; }
-  .aggressive-heading h2, .advantage-copy h2, .operator-copy h2, .qualification-copy h2 { font-size: clamp(3rem,13vw,4.8rem); }
+  .aggressive-heading h2, .advantage-copy h2, .operator-copy h2, .qualification-copy h2 { font-size: clamp(2.6rem, 11vw, 4rem); max-width: 100%; }
   .aggressive-heading > p:last-child { font-size: .82rem; }
   .race-steps { grid-template-columns: 1fr; }
-  .race-steps li { min-height: 12rem; border-right: 0; border-bottom: 1px solid rgba(4,23,12,.24); }
+  .race-steps li { min-height: 10rem; border-right: 0; border-bottom: 1px solid rgba(4,23,12,.24); }
   .race-steps h3 { margin-top: 1.7rem; }
-  .operator-visual { min-height: 25rem; }
-  .operator-visual span { right: 1.1rem; bottom: 1.3rem; font-size: 2.8rem; }
-  .faq-aggressive .faq-heading h2 { font-size: clamp(3rem,13vw,4.8rem); }
+  .operator-visual { min-height: 18rem; }
+  .operator-visual span { right: 1.1rem; bottom: 1.3rem; font-size: 2rem; }
+  .faq-aggressive .faq-heading h2 { font-size: clamp(2.6rem, 11vw, 4rem); max-width: 100%; }
   .field-grid { grid-template-columns: 1fr; }
   .field-wide { grid-column: auto; }
   .qualification-form { box-shadow: 8px 8px 0 rgba(0,213,99,.08); }
-  .closing-statement p, .closing-statement strong { font-size: clamp(3rem,13vw,5.5rem); }
+  .closing-statement p, .closing-statement strong { font-size: clamp(2.5rem, 11vw, 4.5rem); }
   .consent-banner { right: .75rem; bottom: calc(5.5rem + env(safe-area-inset-bottom)); width: calc(100% - 1.5rem); }
+  .footer-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-slogan { order: 3; }
 }
 
 @media (max-width: 430px) {
-  .hero-recruitment .eyebrow { max-width: 31ch; font-size: .58rem; }
-  .hero-recruitment .hero-grid { min-height: 39rem; padding-top: 10rem; }
+  .hero-recruitment .eyebrow { max-width: 100%; font-size: .56rem; }
+  .hero-recruitment .hero-grid { min-height: min(36rem, calc(100svh - 5rem)); padding-top: 6.5rem; }
+  .hero-recruitment h1 { font-size: clamp(2.35rem, 12.5vw, 3.35rem); }
   .proof-grid article { padding: .9rem; }
-  .proof-grid strong { font-size: 2.6rem; }
-  .fold-content { min-height: 60rem; }
-  .opportunity-fold .fold-content { min-height: 95rem; }
-  .business-fold .fold-content { min-height: 79rem; }
-  .fold-copy, .opportunity-heading, .business-heading { margin-top: 12.5rem; }
-  .fold-copy h2, .opportunity-heading h2, .business-heading h2 { font-size: clamp(3rem,15vw,4.3rem); }
+  .proof-grid strong { font-size: 2.4rem; }
+  .fold-content { min-height: 0; }
+  .opportunity-fold .fold-content,
+  .business-fold .fold-content { min-height: 0; }
+  .fold-copy, .opportunity-heading, .business-heading { margin-top: 3.5rem; }
+  .fold-copy h2, .opportunity-heading h2, .business-heading h2 { font-size: clamp(2.4rem, 13vw, 3.6rem); }
   .opportunity-grid, .business-topics { grid-template-columns: 1fr; }
-  .opportunity-grid article { min-height: 8.5rem; }
-  .business-topics article { min-height: 7.5rem; }
+  .opportunity-grid article { min-height: 7.5rem; }
+  .business-topics article { min-height: 6.5rem; }
   .form-heading { align-items: flex-start; flex-direction: column; gap: .3rem; }
   .closing-statement { padding-block: 4.5rem; }
 }
