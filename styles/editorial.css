@@ -192,7 +192,8 @@ body.recruitment-page::before {
   text-shadow: 0 5px 28px rgba(0,0,0,.55);
 }
 .recruitment-page .hero-recruitment h1 span,
-.recruitment-page .hero-recruitment h1 em { display: block; }
+.recruitment-page .hero-recruitment h1 em,
+.recruitment-page .hero-recruitment h1 .bdm-line { display: block; }
 .recruitment-page .hero-recruitment h1 em,
 .recruitment-page .hero-recruitment h1 .bdm-line { color: var(--bdm-neon); }
 .recruitment-page .hero-rally {
