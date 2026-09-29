@@ -14,8 +14,25 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: 72% center;
     pointer-events: none;
+  }
+  .hero-media {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% center;
+    pointer-events: none;
+    background: #0b100d;
+  }
+  .hero-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% center;
   }
   .hero::before {
     position: absolute;
@@ -257,6 +274,8 @@
   .footer-contact:hover { color: var(--green-bright); }
   .copyright { display: flex; flex-direction: column; color: #929d95; font-size: .64rem; line-height: 1.65; text-align: right; white-space: nowrap; }
   .site-credit { color: #c0cdc3; }
+  .asset-credit { margin-top: .35rem; color: #7d8780; font-size: .58rem; line-height: 1.5; white-space: normal; max-width: 28rem; margin-left: auto; }
+  .asset-credit a { color: #9aa89e; text-decoration: underline; text-underline-offset: 2px; }
   .section-inline-cta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.35rem; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #f8faf8; }
   .section-inline-cta p { color: #47514a; font-size: .8rem; }
   .section-inline-cta .text-link { color: var(--green-deep); white-space: nowrap; }
@@ -365,7 +384,15 @@
   .aggressive-header .nav-cta { color: #07110b; background: var(--green-bright); text-transform: uppercase; }
   .aggressive-header .nav-cta:hover { background: #7cffb5; }
 
-  .hero-recruitment { min-height: calc(100svh - 4.7rem); border-bottom: 1px solid rgba(255,255,255,.1); }
+  .hero-recruitment .hero-media { display: none; }
+  .hero-recruitment .hero-image { object-position: 68% center; }
+  @media (min-width: 761px) {
+    .hero-recruitment .hero-media { display: block; }
+    .hero-recruitment .hero-image-fallback {
+      opacity: 0;
+      /* keep in DOM for LCP/preload and no-JS fallback painting */
+    }
+  }
   .hero-recruitment::before {
     background:
       linear-gradient(90deg, rgba(5,7,6,.97) 0%, rgba(5,7,6,.9) 32%, rgba(5,7,6,.38) 62%, rgba(5,7,6,.16) 100%),

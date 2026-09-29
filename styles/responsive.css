@@ -188,7 +188,9 @@
   .hero-recruitment { min-height: 0; }
   .hero-recruitment::before { background: linear-gradient(180deg,rgba(4,6,5,.18),rgba(4,6,5,.55) 38%,rgba(4,6,5,.97) 77%), linear-gradient(90deg,rgba(4,6,5,.78),transparent 70%); }
   .hero-recruitment::after { display: block; background: radial-gradient(circle at 60% 30%,rgba(0,213,99,.2),transparent 14%); opacity: .5; animation: none; }
-  .hero-recruitment .hero-image { object-position: 57% center; }
+  .hero-recruitment .hero-image,
+  .hero-recruitment .hero-media,
+  .hero-recruitment .hero-media video { object-position: center 58%; }
   .hero-recruitment .hero-grid { min-height: 42rem; align-items: end; padding-block: 12rem 2rem; }
   .hero-recruitment .hero-grid.container { width: min(calc(100% - 2 * var(--gutter)),1280px); padding-inline: 0; }
   .hero-recruitment h1 { max-width: 10ch; font-size: clamp(3.25rem,14vw,5rem); line-height: .85; }
