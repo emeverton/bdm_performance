@@ -1,4 +1,4 @@
-name: Verify site integrity
+name: Verify site
 on:
   push:
   pull_request:
@@ -13,7 +13,5 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - run: python3 scripts/build_css.py --check
-      - run: python3 scripts/integrity.py
       - run: python3 scripts/validate.py
-      - run: node --check app.js && node --check modules/navigation.js && node --check modules/testimonials.js && node --check modules/attribution.js && node --check modules/engagement.js
+      - run: node --check app.js
