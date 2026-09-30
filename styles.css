@@ -85,7 +85,7 @@ input,select{height:56px}
 .about>.section-photo{height:700px;object-position:center 43%}
 .about .split-head,.opportunity .split-head{display:block}
 .about .index,.opportunity .index{margin:0 0 24px;color:var(--green);font-size:10px}
-.about h2,.opportunity h2,.final h2{max-width:900px;font-size:clamp(68px,7.6vw,122px);line-height:1.02;letter-spacing:-.04em}
+.about h2,.opportunity h2,.final h2{max-width:900px;font-size:clamp(62px,6.5vw,106px);line-height:1.04;letter-spacing:-.035em}
 .about-body{margin-top:34px}
 .about-copy{display:grid;gap:15px;max-width:640px;font-size:14px;line-height:1.65;color:rgba(243,244,239,.82)}
 .about-copy p{margin:0}
@@ -105,15 +105,16 @@ input,select{height:56px}
 .opportunity{padding:142px 0 136px}
 .opportunity>.section-photo{height:680px;object-position:center 53%}
 .opportunity h2{max-width:970px}
-.opportunity-copy{max-width:660px;margin:30px 0 0;font-size:16px;line-height:1.6;color:rgba(243,244,239,.82)}
+.opportunity-copy{max-width:none;margin:30px auto 0;font-size:16px;font-weight:400;line-height:1.6;color:rgba(243,244,239,.82)}
 .opportunity-copy p{margin:0}
+.opportunity-copy>p:not(.opportunity-kicker){max-width:660px}
 .opportunity-copy .opportunity-kicker{margin-bottom:18px;font-size:11px;font-weight:900;line-height:1.7;letter-spacing:.2em;text-transform:uppercase;color:var(--paper)}
 .opportunity-kicker::after{content:"";display:block;width:42px;height:4px;margin-top:18px;background:var(--green)}
 .advantages{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:86px;border-top:1px solid var(--line)}
 .advantages article,.advantages article:nth-child(4n){min-height:248px;padding:27px 22px;border-right:1px solid rgba(87,255,32,.4);border-bottom:1px solid var(--line)}
 .advantages article:nth-child(4n){border-right:0}
 .advantages .adv-icon{display:block;width:38px;height:38px;margin-bottom:21px;fill:none;stroke:var(--green);stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}
-.advantages h3{margin:0 0 10px;font-family:var(--display);font-size:clamp(21px,2vw,28px);line-height:1.04;letter-spacing:.005em;text-transform:uppercase}
+.advantages h3{margin:0 0 10px;font-family:var(--body);font-size:clamp(16px,1.3vw,19px);font-weight:800;line-height:1.2;letter-spacing:.025em;text-transform:uppercase}
 .advantages p{max-width:260px;margin:0;font-size:12px;line-height:1.55;color:rgba(243,244,239,.7)}
 .process{background:#ecefe8;color:var(--ink)}
 .final{padding:146px 0 80px;background:#050705}
@@ -157,7 +158,7 @@ input,select{height:56px}
   .opportunity>.section-photo{object-position:62% center}
   .about::before{height:520px;background:linear-gradient(180deg,rgba(5,7,5,.14) 0%,rgba(5,7,5,.55) 38%,#050705 100%)}
   .opportunity::before{height:520px;background:linear-gradient(180deg,rgba(5,7,5,.2) 0%,rgba(5,7,5,.74) 52%,#050705 100%)}
-  .about h2,.opportunity h2{font-size:clamp(58px,15vw,86px);line-height:1.02}
+  .about h2,.opportunity h2{font-size:clamp(52px,13vw,74px);line-height:1.04}
   .about .index,.opportunity .index,.final .index{margin-bottom:16px;font-size:9px}
   .about-body{margin-top:29px}
   .about-copy{gap:13px;font-size:13px;line-height:1.6}
@@ -175,7 +176,7 @@ input,select{height:56px}
   .advantages{margin-top:54px}
   .advantages article,.advantages article:nth-child(4n){min-height:226px;padding:20px 12px}
   .advantages .adv-icon{width:31px;height:31px;margin-bottom:17px}
-  .advantages h3{font-size:21px;line-height:1.05}
+  .advantages h3{font-size:16px;line-height:1.2}
   .advantages p{font-size:11px}
   .process{padding-top:82px;padding-bottom:82px}
   .final{padding-top:88px}
@@ -226,3 +227,16 @@ input,select{height:56px}
   .steps li{padding-inline:9px}
   .steps h3{font-size:22px;overflow-wrap:anywhere}
 }
+
+/* Blend the video hero into the next photographic fold without covering copy. */
+.hero::after{content:"";position:absolute;z-index:1;inset:auto 0 0;height:clamp(88px,12vw,168px);pointer-events:none;background:linear-gradient(180deg,rgba(5,7,5,0) 0%,rgba(5,7,5,.58) 54%,#050705 100%)}
+.hero-inner,.hero-bottom,.segment-rail{z-index:2}
+.about::before{background:linear-gradient(90deg,#050705 0%,rgba(5,7,5,.96) 20%,rgba(5,7,5,.72) 47%,rgba(5,7,5,.16) 100%),linear-gradient(180deg,#050705 0%,rgba(5,7,5,.55) 130px,rgba(5,7,5,.08) 310px,#050705 740px)}
+@media(max-width:700px){
+  .hero::after{height:104px}
+  .about::before{background:linear-gradient(180deg,#050705 0%,rgba(5,7,5,.72) 90px,rgba(5,7,5,.42) 250px,#050705 520px)}
+}
+
+/* Keep the side rail readable over both dark video and bright signage. */
+.segment-rail{color:rgba(243,244,239,.96);font-weight:900;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 9px rgba(0,0,0,.9)}
+.segment-rail b{color:rgba(243,244,239,.9);border-color:rgba(243,244,239,.42)}
